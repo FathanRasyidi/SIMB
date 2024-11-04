@@ -185,7 +185,7 @@
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        Isi dewe lek - andika
+        Isi dewe lek - andika -alkali
     </div>
 
     <script>
