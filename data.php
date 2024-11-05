@@ -189,7 +189,6 @@
             <div class="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px]">
                 <a target='_blank' href='https://www.material-tailwind.com/docs/html/table'
                     class='block w-full px-4 py-2 text-center text-slate-700 transition-all '>
-                    More components on <b>Material Tailwind</b>.
                 </a>
             </div>
 
@@ -225,49 +224,27 @@
                         <tr>
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
                                 <p class="text-sm font-normal leading-none text-slate-500">
-                                    Invoice Number
+                                    Kode Profil
                                 </p>
                             </th>
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
                                 <p class="text-sm font-normal leading-none text-slate-500">
-                                    Customer
+                                    Nama Orang
                                 </p>
                             </th>
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
                                 <p class="text-sm font-normal leading-none text-slate-500">
-                                    Amount
+                                    Nama Bencana
                                 </p>
                             </th>
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
                                 <p class="text-sm font-normal leading-none text-slate-500">
-                                    Issued
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Due Date
+                                    Foto
                                 </p>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover:bg-slate-50 border-b border-slate-200">
-                            <td class="p-4 py-5">
-                                <p class="block font-semibold text-sm text-slate-800">PROJ1001</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">John Doe</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">$1,200.00</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-01</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-15</p>
-                            </td>
-                        </tr>
                         <tr class="hover:bg-slate-50 border-b border-slate-200">
                             <td class="p-4 py-5">
                                 <p class="block font-semibold text-sm text-slate-800">PROJ1002</p>
@@ -279,44 +256,7 @@
                                 <p class="text-sm text-slate-500">$850.00</p>
                             </td>
                             <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-05</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-20</p>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 border-b border-slate-200">
-                            <td class="p-4 py-5">
-                                <p class="block font-semibold text-sm text-slate-800">PROJ1003</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">Acme Corp</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">$2,500.00</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-07</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-21</p>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 border-b border-slate-200">
-                            <td class="p-4 py-5">
-                                <p class="block font-semibold text-sm text-slate-800">PROJ1004</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">Global Inc</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">$4,750.00</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-10</p>
-                            </td>
-                            <td class="p-4 py-5">
-                                <p class="text-sm text-slate-500">2024-08-25</p>
+                                <p class="text-sm text-slate-500">$850.00</p>
                             </td>
                         </tr>
                     </tbody>
