@@ -182,7 +182,7 @@
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        coba bang
+        coba bang gyb
     </div>
 
     <script>
