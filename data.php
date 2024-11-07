@@ -45,26 +45,20 @@ $result = $conn->query($sql);
             color: gray;
         }
 
-        /* Mengatur tombol agar lebih kecil dan memiliki outline */
         .btn-input-data button {
             background-color: #e5e7eb;
-            /* Warna latar abu-abu */
             color: transparent;
             font-weight: bold;
             background-clip: text;
             -webkit-background-clip: text;
             background-image: linear-gradient(to right, #3b82f6, #9333ea);
-            /* Gradasi biru ke ungu */
             padding: 4px 12px;
-            /* Mengurangi padding agar tombol lebih kecil */
             border: 1px solid #d1d5db;
-            /* Outline abu-abu tipis */
             transition: all 0.3s ease-in-out;
         }
 
         .icon-color {
             stroke: #3b82f6;
-            /* Warna ikon biru */
         }
 
         .btn-input-data button:hover {
