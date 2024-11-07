@@ -186,6 +186,7 @@
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
         Isi papapap
+        punten
     </div>
 
     <script>
