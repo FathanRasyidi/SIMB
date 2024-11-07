@@ -1,28 +1,10 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tsunami";
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
-
-// Query untuk mengambil data
-$sql = "SELECT * FROM orang_hilang";
-$result = $conn->query($sql);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMB Tsunami</title>
-    <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
+    <title>Tsunami Warning Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="font/stylesheet.css">
     <style>
@@ -43,32 +25,6 @@ $result = $conn->query($sql);
             margin-top: 10em;
             text-align: center;
             color: gray;
-        }
-
-        /* Mengatur tombol agar lebih kecil dan memiliki outline */
-        .btn-input-data button {
-            background-color: #e5e7eb;
-            /* Warna latar abu-abu */
-            color: transparent;
-            font-weight: bold;
-            background-clip: text;
-            -webkit-background-clip: text;
-            background-image: linear-gradient(to right, #3b82f6, #9333ea);
-            /* Gradasi biru ke ungu */
-            padding: 4px 12px;
-            /* Mengurangi padding agar tombol lebih kecil */
-            border: 1px solid #d1d5db;
-            /* Outline abu-abu tipis */
-            transition: all 0.3s ease-in-out;
-        }
-
-        .icon-color {
-            stroke: #3b82f6;
-            /* Warna ikon biru */
-        }
-
-        .btn-input-data button:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -182,7 +138,7 @@ $result = $conn->query($sql);
                 </button> </a>
             <a href="data.php">
                 <button href="data.php"
-                    class="hover:ml-4 w-full text-white bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    class="hover:ml-4 w-full text-white hover:bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -213,7 +169,7 @@ $result = $conn->query($sql);
                 </svg>
             </a>
             <a href="data.php"
-                class="justify-end pr-4 ml-1 text-white bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -225,155 +181,7 @@ $result = $conn->query($sql);
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        <!-- component -->
-        <!-- component -->
-        <div class="max-w-[720px] mx-auto">
-
-            <div class="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px]">
-                <a target='_blank' href='https://www.material-tailwind.com/docs/html/table'
-                    class='block w-full px-4 py-2 text-center text-slate-700 transition-all '>
-                </a>
-            </div>
-
-            <div class="w-full flex justify-between items-center mb-3 mt-1 pl-3">
-                <div>
-                    <h3 class="text-lg font-semibold text-slate-800">Data Orang Hilang</h3>
-                    <a href="inputdata.php" class="btn-input-data">
-                        <button
-                            class="hover:ml-4 text-transparent bg-gray-200 p-1 pl-4 pr-4 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-2 gradient-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                class="w-4 h-4 icon-color">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                            <div>Input Data</div>
-                        </button>
-                    </a>
-                </div>
-
-                <div class="ml-3">
-                    <div class="w-full max-w-sm min-w-[200px] relative">
-                        <div class="relative">
-                            <select class="outline-none focus:outline-none p-2 bg-white rounded-3xl"
-                                value={selectedValue} onChange={handleSelectChange}>
-                                {genre.map((item, i) => (
-                                <option value={item} key={i}>
-                                    Select Category
-                                </option>
-                                <option value={item} key={i}>
-                                    Sci-fi
-                                </option>
-                                <option value={item} key={i}>
-                                    Drama
-                                </option>
-                                <option value={item} key={i}>
-                                    Thriller
-                                </option>
-                                <option value={item} key={i}>
-                                    Documentary
-                                </option>
-                                ))}
-                            </select>
-
-                        </div>
-                        <input
-                            class="bg-white w-full pr-11 h-10 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded transition duration-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
-                            placeholder="Cari nama orang..." />
-                        <button class="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center bg-white rounded "
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
-                                stroke="currentColor" class="w-8 h-8 text-slate-600">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div
-            class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-            <table class="w-full text-left table-auto min-w-max">
-                <thead>
-                    <tr>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Kode Profil
-                            </p>
-                        </th>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Nama Orang
-                            </p>
-                        </th>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Nama Bencana
-                            </p>
-                        </th>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Foto
-                            </p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($result->num_rows > 0) { ?>
-                        <?php while ($row = $result->fetch_assoc()) { ?>
-                            <tr class="hover:bg-slate-50 border-b border-slate-200">
-                                <td class="p-4 py-5">
-                                    <p class="block font-semibold text-sm text-slate-800">
-                                        <?php echo $row["kode_profil"] ?>
-                                    </p>
-                                </td>
-                                <td class="p-4 py-5">
-                                    <p class="block font-semibold text-sm text-slate-800">
-                                        <?php echo $row["nama_orang"] ?>
-                                    </p>
-                                </td>
-                                <td class="p-4 py-5">
-                                    <p class="block font-semibold text-sm text-slate-800">
-                                        <?php echo $row["nama_bencana"] ?>
-                                    </p>
-                                </td>
-                            </tr>
-                        <?php }
-                    } else {
-                        echo "Tidak ada data";
-                    } ?>
-                </tbody>
-            </table>
-
-            <div class="flex justify-between items-center px-4 py-3">
-                <div class="text-sm text-slate-500">
-                    Showing <b>1-5</b> of 45
-                </div>
-                <div class="flex space-x-1">
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        Prev
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
-                        1
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        2
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        3
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        Next
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+        isi apa ini guys
     </div>
 
     <script>
@@ -417,8 +225,6 @@ $result = $conn->query($sql);
 
         }
     </script>
-
-    <?php $conn->close(); ?>
 </body>
 
 </html>
