@@ -1,16 +1,14 @@
 <?php
 $servername = "localhost";
-$username = "username";
-$password = "password";
+$username = "root";
+$password = "";
 $dbname = "tsunami";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Cek koneksi
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Query untuk mengambil data
 $sql = "SELECT * FROM orang_hilang";
 $result = $conn->query($sql);
 ?>
@@ -232,7 +230,7 @@ $result = $conn->query($sql);
             <div class="w-full flex justify-between items-center mb-3 mt-1 pl-3">
                 <div>
                     <h3 class="text-lg font-semibold text-slate-800">Data Orang Hilang</h3>
-                    <a href="#" class="btn-input-data">
+                    <a href="inputdata.php" class="btn-input-data">
                         <button
                             class="hover:ml-4 text-transparent bg-gray-200 p-1 pl-4 pr-4 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-2 gradient-text">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
