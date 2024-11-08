@@ -168,8 +168,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
                 </svg>
             </a>
             <a href="data.php"
@@ -185,8 +184,29 @@
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        Isi papapap
-        punten
+        <section class="mb-12">
+            <div class="relative overflow-hidden rounded-lg shadow-lg">
+                <img src="assets/parallex.png" alt="parallex" class="w-full h-full object-cover">
+            </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto space-y-8 p-6 bg-white">
+            <header>
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-blue-500">
+                    Apa Itu Tsunami?
+                </h2>
+            </header>
+
+            <article class="prose prose-lg">
+                <p class="text-gray-700 leading-relaxed">
+                    Tsunami adalah serapan dari bahasa Jepang 津波 (tsunami): tsu (pelabuhan), dan nami (gelombang) yang
+                    dimaksud
+                    dengan gelombang air besar yang diakibatkan oleh gangguan di bawah laut, seperti gempa bumi,
+                    longsor,
+                    letusan gunung berapi, atau jatuhnya meteor.
+                </p>
+            </article>
+        </section>
     </div>
 
     <script>
