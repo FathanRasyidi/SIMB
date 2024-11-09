@@ -27,6 +27,33 @@
             text-align: center;
             color: gray;
         }
+
+        /* cardflip */
+        .card-container {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .group:hover .card-container {
+            transform: rotateY(180deg);
+        }
     </style>
 </head>
 
@@ -206,6 +233,120 @@
                     letusan gunung berapi, atau jatuhnya meteor.
                 </p>
             </article>
+        </section>
+
+        <div class="text-center mb-5">
+            <h2 class="text-3xl font-bold mt-10 text-blue-600 inline-block">
+                Penyebab Tsunami
+            </h2>
+            <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8 bg-white">
+            <!-- Card 1 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/gempa.png" alt="gempa">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Gempa Bumi</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Gempa Bumi</h3>
+                            <p class="text-sm text-justify">
+                                Gempa bumi dapat menyebabkan tsunami karena pergeseran dasar laut akibat gempa mengubah
+                                volume air secara tiba-tiba, menciptakan gelombang besar dan panjang di permukaan laut.
+                                Gelombang ini bergerak cepat di laut dalam, tetapi saat mendekati pantai, kecepatannya
+                                berkurang dan ketinggiannya meningkat, mengakibatkan gelombang tsunami yang sangat
+                                tinggi dan merusak saat mencapai pantai.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/longsor.png" alt="longsor">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Longsor Bawah Laut</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Longsor Bawah Laut</h3>
+                            <p class="text-sm text-justify">
+                                Longsor bawah laut dapat menyebabkan massa tanah atau sedimen di dasar laut tergelincir
+                                secara tiba-tiba. Pergerakan ini menciptakan gelombang yang bisa menyebar ke seluruh
+                                lautan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/letusangunung.png"
+                                alt="gunung berapi">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Letusan Gunung Berapi</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Letusan Gunung Berapi</h3>
+                            <p class="text-sm text-justify">
+                                Aktivitas vulkanik menyebabkan naik atau turunnya bibir gunung berapi yang mengakibatkan
+                                tsunami mirip dengan tsunami gempa bawah laut. Ada juga letusan besar pulau gunung
+                                berapi di tengah laut yang menyebabkan air bergerak mengisi pulau tersebut dan memulai
+                                tsunami.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/meteor.png" alt="meteor">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Hantaman Meteor</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Hantaman Meteor</h3>
+                            <p class="text-sm text-justify">
+                                Benturan benda besar ke dalam air akibat ledakan senjata atau jatuhnya meteor dapat
+                                memicu gelombang air, dan tsunami yang dihasilkannya memiliki karakteristik fisika yang
+                                mirip dengan tsunami letusan gunung berapi. Namun kejadian ini sangat langka, bahkan
+                                belum terdapat catatan sejarahnya.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 
