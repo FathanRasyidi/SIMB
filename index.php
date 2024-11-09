@@ -27,6 +27,33 @@
             text-align: center;
             color: gray;
         }
+
+        /* cardflip */
+        .card-container {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .group:hover .card-container {
+            transform: rotateY(180deg);
+        }
     </style>
 </head>
 
@@ -168,8 +195,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
                 </svg>
             </a>
             <a href="data.php"
@@ -185,8 +211,143 @@
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        Isi papapap
-        punten
+        <section class="mb-12">
+            <div class="relative overflow-hidden rounded-lg shadow-lg">
+                <img src="assets/parallex.png" alt="parallex" class="w-full h-full object-cover">
+            </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto space-y-8 p-6 bg-white">
+            <header>
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-blue-500">
+                    Apa Itu Tsunami?
+                </h2>
+            </header>
+
+            <article class="prose prose-lg">
+                <p class="text-gray-700 leading-relaxed">
+                    Tsunami adalah serapan dari bahasa Jepang 津波 (tsunami): tsu (pelabuhan), dan nami (gelombang) yang
+                    dimaksud
+                    dengan gelombang air besar yang diakibatkan oleh gangguan di bawah laut, seperti gempa bumi,
+                    longsor,
+                    letusan gunung berapi, atau jatuhnya meteor.
+                </p>
+            </article>
+        </section>
+
+        <div class="text-center mb-5">
+            <h2 class="text-3xl font-bold mt-10 text-blue-600 inline-block">
+                Penyebab Tsunami
+            </h2>
+            <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8 bg-white">
+            <!-- Card 1 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/gempa.png" alt="gempa">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Gempa Bumi</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Gempa Bumi</h3>
+                            <p class="text-sm text-justify">
+                                Gempa bumi dapat menyebabkan tsunami karena pergeseran dasar laut akibat gempa mengubah
+                                volume air secara tiba-tiba, menciptakan gelombang besar dan panjang di permukaan laut.
+                                Gelombang ini bergerak cepat di laut dalam, tetapi saat mendekati pantai, kecepatannya
+                                berkurang dan ketinggiannya meningkat, mengakibatkan gelombang tsunami yang sangat
+                                tinggi dan merusak saat mencapai pantai.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/longsor.png" alt="longsor">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Longsor Bawah Laut</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Longsor Bawah Laut</h3>
+                            <p class="text-sm text-justify">
+                                Longsor bawah laut dapat menyebabkan massa tanah atau sedimen di dasar laut tergelincir
+                                secara tiba-tiba. Pergerakan ini menciptakan gelombang yang bisa menyebar ke seluruh
+                                lautan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/letusangunung.png"
+                                alt="gunung berapi">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Letusan Gunung Berapi</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Letusan Gunung Berapi</h3>
+                            <p class="text-sm text-justify">
+                                Aktivitas vulkanik menyebabkan naik atau turunnya bibir gunung berapi yang mengakibatkan
+                                tsunami mirip dengan tsunami gempa bawah laut. Ada juga letusan besar pulau gunung
+                                berapi di tengah laut yang menyebabkan air bergerak mengisi pulau tersebut dan memulai
+                                tsunami.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group h-96 perspective">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/meteor.png" alt="meteor">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Hantaman Meteor</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col items-center justify-center">
+                            <h3 class="text-xl font-bold mb-2">Hantaman Meteor</h3>
+                            <p class="text-sm text-justify">
+                                Benturan benda besar ke dalam air akibat ledakan senjata atau jatuhnya meteor dapat
+                                memicu gelombang air, dan tsunami yang dihasilkannya memiliki karakteristik fisika yang
+                                mirip dengan tsunami letusan gunung berapi. Namun kejadian ini sangat langka, bahkan
+                                belum terdapat catatan sejarahnya.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
