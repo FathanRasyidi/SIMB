@@ -7,6 +7,7 @@
     <title>SIMB Tsunami</title>
     <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="font/stylesheet.css">
     <style>
         body {
@@ -217,16 +218,19 @@
             </div>
         </section>
 
-        <section class="max-w-5xl mx-auto space-y-8 p-6 bg-white">
-            <header>
-                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-blue-500">
+        <!-- Pengertian -->
+        <section class="max-w-6xl mx-auto space-y-8 p-6 bg-white">
+            <header data-aos="zoom-in-up" class="text-center delay-100">
+                <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
                     Apa Itu Tsunami?
                 </h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
             </header>
 
-            <article class="prose prose-lg">
-                <p class="text-gray-700 leading-relaxed">
-                    Tsunami adalah serapan dari bahasa Jepang 津波 (tsunami): tsu (pelabuhan), dan nami (gelombang) yang
+            <article class="prose prose-lg delay-200" data-aos="zoom-in-up">
+                <p class="text-lg text-justify">
+                    Tsunami adalah serapan dari bahasa Jepang 津波 (tsunami): tsu (pelabuhan), dan nami (gelombang)
+                    yang
                     dimaksud
                     dengan gelombang air besar yang diakibatkan oleh gangguan di bawah laut, seperti gempa bumi,
                     longsor,
@@ -234,17 +238,17 @@
                 </p>
             </article>
         </section>
-
-        <div class="text-center mb-5">
-            <h2 class="text-3xl font-bold mt-10 text-blue-600 inline-block">
+        <!-- Penyebab -->
+        <div data-aos="zoom-in-up" class="text-center delay-100">
+            <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
                 Penyebab Tsunami
             </h2>
             <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
         </div>
 
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8 bg-white">
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8 bg-white">
             <!-- Card 1 -->
-            <div class="group h-96 perspective">
+            <div data-aos="zoom-in-up" class="group h-96 perspective delay-200">
                 <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
                     <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
                         <div class="h-4/5">
@@ -256,7 +260,7 @@
                     </div>
                     <div
                         class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+                        <div class="flex min-h-full flex-col">
                             <h3 class="text-xl font-bold mb-2">Gempa Bumi</h3>
                             <p class="text-sm text-justify">
                                 Gempa bumi dapat menyebabkan tsunami karena pergeseran dasar laut akibat gempa mengubah
@@ -271,32 +275,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="group h-96 perspective">
-                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
-                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
-                        <div class="h-4/5">
-                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/longsor.png" alt="longsor">
-                        </div>
-                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
-                            <h3 class="text-xl font-bold text-center text-gray-800">Longsor Bawah Laut</h3>
-                        </div>
-                    </div>
-                    <div
-                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
-                            <h3 class="text-xl font-bold mb-2">Longsor Bawah Laut</h3>
-                            <p class="text-sm text-justify">
-                                Longsor bawah laut dapat menyebabkan massa tanah atau sedimen di dasar laut tergelincir
-                                secara tiba-tiba. Pergerakan ini menciptakan gelombang yang bisa menyebar ke seluruh
-                                lautan.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="group h-96 perspective">
+            <div data-aos="zoom-in-up" class="group h-96 perspective delay-300">
                 <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
                     <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
                         <div class="h-4/5">
@@ -309,7 +288,7 @@
                     </div>
                     <div
                         class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+                        <div class="flex min-h-full flex-col">
                             <h3 class="text-xl font-bold mb-2">Letusan Gunung Berapi</h3>
                             <p class="text-sm text-justify">
                                 Aktivitas vulkanik menyebabkan naik atau turunnya bibir gunung berapi yang mengakibatkan
@@ -322,8 +301,33 @@
                 </div>
             </div>
 
+            <!-- Card 3 -->
+            <div data-aos="zoom-in-up" class="group h-96 perspective delay-500">
+                <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
+                    <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
+                        <div class="h-4/5">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/longsor.png" alt="longsor">
+                        </div>
+                        <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
+                            <h3 class="text-xl font-bold text-center text-gray-800">Longsor Bawah Laut</h3>
+                        </div>
+                    </div>
+                    <div
+                        class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="flex min-h-full flex-col">
+                            <h3 class="text-xl font-bold mb-2">Longsor Bawah Laut</h3>
+                            <p class="text-sm text-justify">
+                                Longsor bawah laut dapat menyebabkan massa tanah atau sedimen di dasar laut tergelincir
+                                secara tiba-tiba. Pergerakan ini menciptakan gelombang yang bisa menyebar ke seluruh
+                                lautan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Card 4 -->
-            <div class="group h-96 perspective">
+            <div data-aos="zoom-in-up" class="group h-96 perspective delay-700">
                 <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
                     <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
                         <div class="h-4/5">
@@ -335,7 +339,7 @@
                     </div>
                     <div
                         class="card-back absolute inset-0 h-full w-full rounded-xl bg-blue-500 px-8 py-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+                        <div class="flex min-h-full flex-col">
                             <h3 class="text-xl font-bold mb-2">Hantaman Meteor</h3>
                             <p class="text-sm text-justify">
                                 Benturan benda besar ke dalam air akibat ledakan senjata atau jatuhnya meteor dapat
@@ -348,6 +352,119 @@
                 </div>
             </div>
         </section>
+
+        <!-- Kawasan Rentan -->
+        <div data-aos="zoom-in-up" class="text-center delay-100">
+            <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
+                Kawasan Rentan Tsunami
+            </h2>
+            <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <section class="max-w-6xl mx-auto p-6 bg-white">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div data-aos="zoom-in-up" class="md:w-1/2 delay-200">
+                    <img class="w-full rounded-lg shadow-lg" src="asset/kawasanrentan.png" alt="kawasanrentan" />
+                </div>
+                <div data-aos="zoom-in-up" class="md:w-1/2 delay-300">
+                    <p class="text-lg text-justify">
+                        Rawan tidaknya suatu daerah ditentukan oleh ada tidaknya pemicu. Hampir 80% tsunami di bumi
+                        terjadi di kawasan yang disebut
+                        <span class="font-bold text-blue-500">Lingkaran Api Pasifik</span>, zona penunjaman di sekitar
+                        Samudra
+                        Pasifik yang mengalami banyak gempa bumi besar. Di luar kawasan ini, tsunami cukup jarang
+                        terjadi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rambatan Gelombang -->
+        <div data-aos="zoom-in-up" class="text-center delay-100">
+            <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
+                Rambatan Gelombang Tsunami
+            </h2>
+            <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <section data-aos="zoom-in-up" class="max-w-6xl mx-auto p-6 bg-white mt-2 delay-200">
+            <div class="relative w-full rounded-xl shadow-inner bg-blue-100 overflow-hidden">
+                <video class="w-full h-auto rounded-xl" controls poster="asset/thumbnail-tsunami.jpg">
+                    <source src="asset/tsunamiAnimasi.mp4">
+                </video>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto mt-5">
+            <div class="flex flex-col md:grid grid-cols-9 mx-auto p-2 text-white">
+                <div class="flex flex-row-reverse md:contents">
+                    <div data-aos="zoom-in-up"
+                        class="bg-blue-600 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md delay-300">
+                        <h3 class="font-semibold text-lg mb-1">Dari Pusat Tsunami Hingga ke Pantai</h3>
+                        <p class="leading-tight text-justify">
+                            Gelombang tsunami bermula dari pusat gangguan di laut sebagai gelombang besar dengan panjang
+                            gelombang yang sangat panjang (berkisar beberapa kilometer hingga ratusan kilometer). Waktu
+                            tempuh gelombang tsunami hingga mencapai suatu titik bergantung pada karakteristik dasar
+                            laut serta jarak dari pusat tsunami. Berbeda dengan ombak biasa yang hanya melibatkan
+                            lapisan permukaan laut, tsunami melibatkan seluruh kolom air, dari permukaan hingga dasar
+                            laut.
+                        </p>
+                    </div>
+                    <div data-aos="zoom-in-up" class="col-start-5 col-end-6 md:mx-auto relative mr-10 delay-200">
+                        <div class="h-full w-6 flex items-center justify-center">
+                            <div class="h-full w-1 bg-blue-800 pointer-events-none"></div>
+                        </div>
+                        <div class="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-blue-500 shadow"></div>
+                    </div>
+                </div>
+                <div class="flex md:contents">
+                    <div data-aos="zoom-in-up" class="col-start-5 col-end-6 mr-10 md:mx-auto relative delay-200">
+                        <div class="h-full w-6 flex items-center justify-center">
+                            <div class="h-full w-1 bg-blue-800 pointer-events-none"></div>
+                        </div>
+                        <div class="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-blue-500 shadow"></div>
+                    </div>
+                    <div data-aos="zoom-in-up"
+                        class="bg-blue-600 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md delay-300">
+                        <h3 class="font-semibold text-lg mb-1">Saat Mendekati Pantai</h3>
+                        <p class="leading-tight text-justify">
+                            Saat mendekati pantai, kedalaman laut yang semakin dangkal menyebabkan gelombang tsunami
+                            memendek namun tingginya meningkat. Tidak semua tsunami diawali oleh surutnya air laut;
+                            terkadang tsunami langsung disertai kenaikan permukaan air. Jika bagian lembah gelombang
+                            tiba lebih dulu, permukaan air laut akan tampak turun. Sebaliknya, jika puncak gelombang
+                            yang tiba lebih dulu, air laut akan langsung naik.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-row-reverse md:contents">
+                    <div data-aos="zoom-in-up"
+                        class="bg-blue-600 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md delay-300">
+                        <h3 class="font-semibold text-lg mb-1">Mencapai Daratan</h3>
+                        <p class="leading-tight text-justify">
+                            Pada umumnya, tsunami tidak hadir sebagai dinding air raksasa, tetapi berupa kenaikan
+                            permukaan laut secara tiba-tiba (terkadang diawali surut) yang dapat berlangsung berjam-jam.
+                            Tsunami dapat mengakibatkan kenaikan air hingga 15-30 meter dan menyebabkan banjir dengan
+                            kecepatan hingga 90 km/jam, menghancurkan bangunan dan infrastruktur di daratan. Saat arus
+                            balik tsunami kembali ke laut setelah banjir, kerusakan dapat semakin parah karena air
+                            mengalir deras dan bergejolak, menyebabkan erosi serta merusak pondasi bangunan di jalurnya.
+                        </p>
+                    </div>
+                    <div data-aos="zoom-in-up" class="col-start-5 col-end-6 md:mx-auto relative mr-10 delay-200">
+                        <div class="h-1/2 w-6 flex items-center justify-center">
+                            <div class="h-full w-1 bg-blue-800 pointer-events-none"></div>
+                        </div>
+                        <div class="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-blue-500 shadow"></div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Mitigasi -->
+        <div data-aos="zoom-in-up" class="text-center delay-100">
+            <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
+                Mitigasi Tsunami
+            </h2>
+            <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </div>
     </div>
 
     <script>
@@ -390,6 +507,12 @@
             }
 
         }
+    </script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 
