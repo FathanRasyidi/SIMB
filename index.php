@@ -362,11 +362,11 @@
         </div>
 
         <section class="max-w-6xl mx-auto p-6 bg-white">
-            <div class="flex flex-col md:flex-row gap-8">
-                <div data-aos="zoom-in-up" class="md:w-1/2 delay-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div data-aos="zoom-in-up" class="delay-200">
                     <img class="w-full rounded-lg shadow-lg" src="asset/kawasanrentan.png" alt="kawasanrentan" />
                 </div>
-                <div data-aos="zoom-in-up" class="md:w-1/2 delay-300">
+                <div data-aos="zoom-in-up" class="delay-300">
                     <p class="text-lg text-justify">
                         Rawan tidaknya suatu daerah ditentukan oleh ada tidaknya pemicu. Hampir 80% tsunami di bumi
                         terjadi di kawasan yang disebut
