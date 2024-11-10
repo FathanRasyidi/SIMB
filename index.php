@@ -465,6 +465,130 @@
             </h2>
             <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
         </div>
+
+        <section class="max-w-6xl mx-auto p-6 bg-white mt-4">
+            <p class="text-lg text-justify mb-6">
+                Mitigasi adalah serangkaian upaya untuk mengurangi risiko bencana, baik melalui pembangunan fisik maupun
+                penyadaran dan peningkatan kemampuan menghadapi ancaman bencana.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Mitigasi Struktural -->
+                <div data-aos="zoom-in-up" class="bg-blue-100 rounded-lg shadow-lg p-6 delay-200">
+                    <h3 class="text-xl font-bold text-blue-600 mb-4">Mitigasi Struktural</h3>
+                    <p class="mb-4 text-justify">
+                        Mitigasi struktural merupakan upaya untuk mengurangi risiko bencana tsunami melalui pembangunan
+                        fisik serta infrastruktur pelindung. Terdapat dua jenis mitigasi struktural:
+                    </p>
+
+                    <h4 class="font-semibold text-blue-500 mb-2">1. Mitigasi Struktural Alami</h4>
+                    <ul class="space-y-3 mb-4">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Penanaman dan pelestarian hutan mangrove sebagai pelindung alami pantai</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Perlindungan terumbu karang yang berfungsi sebagai pemecah gelombang alami</span>
+                        </li>
+                    </ul>
+
+                    <h4 class="font-semibold text-blue-500 mb-2">2. Mitigasi Struktural Buatan</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Pembangunan tembok laut (seawall) untuk menahan dan memantulkan energi gelombang
+                                tsunami</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Pembuatan pemecah gelombang (breakwater) di lepas pantai untuk meredam energi
+                                tsunami</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Pembangunan gedung tahan tsunami dan tempat evakuasi vertikal (shelter)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mitigasi Non Struktural -->
+                <div data-aos="zoom-in-up" class="bg-blue-100 rounded-lg shadow-lg p-6 delay-300">
+                    <h3 class="text-xl font-bold text-blue-600 mb-4">Mitigasi Non-Struktural</h3>
+                    <p class="mb-4 text-justify">
+                        Mitigasi non-struktural adalah upaya pengurangan risiko bencana tsunami melalui pengembangan
+                        kebijakan, pengetahuan, dan kesadaran masyarakat. Beberapa bentuk mitigasi non-struktural
+                        meliputi:
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Pemetaan dan identifikasi daerah rawan tsunami serta penetapan jalur evakuasi yang
+                                aman</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Pengembangan dan pemasangan sistem peringatan dini tsunami (Early Warning
+                                System)</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Sosialisasi dan edukasi masyarakat tentang bahaya tsunami dan cara penyelamatan
+                                diri</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Pelaksanaan pelatihan dan simulasi evakuasi tsunami secara berkala untuk meningkatkan
+                                kesiapsiagaan</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Penyusunan kebijakan tata ruang dan penggunaan lahan di wilayah pesisir yang
+                                mempertimbangkan risiko tsunami</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
