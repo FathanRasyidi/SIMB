@@ -363,10 +363,10 @@
 
         <section class="max-w-6xl mx-auto p-6 bg-white">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div data-aos="zoom-in-up" class="delay-200">
+                <div data-aos="zoom-in-right" class="delay-200">
                     <img class="w-full rounded-lg shadow-lg" src="asset/kawasanrentan.png" alt="kawasanrentan" />
                 </div>
-                <div data-aos="zoom-in-up" class="delay-300">
+                <div data-aos="zoom-in-left" class="delay-300">
                     <p class="text-lg text-justify">
                         Rawan tidaknya suatu daerah ditentukan oleh ada tidaknya pemicu. Hampir 80% tsunami di bumi
                         terjadi di kawasan yang disebut
@@ -398,7 +398,7 @@
         <section class="max-w-6xl mx-auto mt-5">
             <div class="flex flex-col md:grid grid-cols-9 mx-auto p-2 text-white">
                 <div class="flex flex-row-reverse md:contents">
-                    <div data-aos="zoom-in-up"
+                    <div data-aos="zoom-in-right"
                         class="bg-blue-600 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md delay-300">
                         <h3 class="font-semibold text-lg mb-1">Dari Pusat Tsunami Hingga ke Pantai</h3>
                         <p class="leading-tight text-justify">
@@ -424,7 +424,7 @@
                         </div>
                         <div class="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-blue-500 shadow"></div>
                     </div>
-                    <div data-aos="zoom-in-up"
+                    <div data-aos="zoom-in-left"
                         class="bg-blue-600 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md delay-300">
                         <h3 class="font-semibold text-lg mb-1">Saat Mendekati Pantai</h3>
                         <p class="leading-tight text-justify">
@@ -437,7 +437,7 @@
                     </div>
                 </div>
                 <div class="flex flex-row-reverse md:contents">
-                    <div data-aos="zoom-in-up"
+                    <div data-aos="zoom-in-right"
                         class="bg-blue-600 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md delay-300">
                         <h3 class="font-semibold text-lg mb-1">Mencapai Daratan</h3>
                         <p class="leading-tight text-justify">
@@ -466,14 +466,14 @@
             <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
         </div>
 
-        <section class="max-w-6xl mx-auto p-6 bg-white mt-4">
+        <section data-aos="zoom-in-up" class="max-w-6xl mx-auto p-6 bg-white mt-4 delay-200">
             <p class="text-lg text-justify mb-6">
                 Mitigasi adalah serangkaian upaya untuk mengurangi risiko bencana, baik melalui pembangunan fisik maupun
                 penyadaran dan peningkatan kemampuan menghadapi ancaman bencana.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Mitigasi Struktural -->
-                <div data-aos="zoom-in-up" class="bg-blue-100 rounded-lg shadow-lg p-6 delay-200">
+                <div data-aos="zoom-in-right" class="bg-blue-100 rounded-lg shadow-lg p-6 delay-200">
                     <h3 class="text-xl font-bold text-blue-600 mb-4">Mitigasi Struktural</h3>
                     <p class="mb-4 text-justify">
                         Mitigasi struktural merupakan upaya untuk mengurangi risiko bencana tsunami melalui pembangunan
@@ -532,7 +532,7 @@
                 </div>
 
                 <!-- Mitigasi Non Struktural -->
-                <div data-aos="zoom-in-up" class="bg-blue-100 rounded-lg shadow-lg p-6 delay-300">
+                <div data-aos="zoom-in-left" class="bg-blue-100 rounded-lg shadow-lg p-6 delay-300">
                     <h3 class="text-xl font-bold text-blue-600 mb-4">Mitigasi Non-Struktural</h3>
                     <p class="mb-4 text-justify">
                         Mitigasi non-struktural adalah upaya pengurangan risiko bencana tsunami melalui pengembangan
