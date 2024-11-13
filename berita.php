@@ -125,7 +125,7 @@
         <div class="max hidden text-white mt-20 flex-col space-y-2 w-full h-[calc(100vh)]">
             <a href="index.php">
                 <button
-                    class="hover:ml-4 w-full text-white bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    class="hover:ml-4 w-full text-white hover:bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                         stroke="currentColor" class="w-4 h-4">
                         <path strokeLinecap="round" strokeLinejoin="round"
@@ -161,11 +161,24 @@
                     </div>
                 </button>
             </a>
+            <a href="berita.php">
+                <button href="data.php"
+                    class="hover:ml-4 w-full text-white bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                    </svg>
+                    <div>
+                        Berita
+                    </div>
+                </button>
+            </a>
         </div>
         <!-- MINI SIDEBAR-->
         <div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
             <a href="index.php"
-                class="justify-end pr-4 ml-1 text-white bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                     stroke="currentColor" class="w-4 h-4">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -177,8 +190,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
                 </svg>
             </a>
             <a href="data.php"
@@ -187,6 +199,14 @@
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </svg>
+            </a>
+            <a href="berita.php"
+                class="justify-end pr-4 ml-1 text-white bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
                 </svg>
             </a>
         </div>
@@ -200,46 +220,55 @@
 
         <!-- Berita atas -->
         <div class="container flex space-x-4 py-4 flex-nowrap">
-            <div class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
+            <div
+                class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
                 <a href="#">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita1.jpg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h6 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" style="font-size: 22px;">Tsunami Aceh, Bencana Alam Terbesar & Memori Kelam Tahun 2004</h6>
+                        <h6 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                            style="font-size: 22px;">Tsunami Aceh, Bencana Alam Terbesar & Memori Kelam Tahun 2004</h6>
                     </a>
                 </div>
             </div>
 
-            <div class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
+            <div
+                class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
                 <a href="#">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita3.jpg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" style="font-size: 22px;">Tsunami dan Gempa Palu Donggala 2018 dalam Angka: Korban, Daya Rusak, dan Lainnya</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                            style="font-size: 22px;">Tsunami dan Gempa Palu Donggala 2018 dalam Angka: Korban, Daya
+                            Rusak, dan Lainnya</h5>
                     </a>
                 </div>
             </div>
 
-            <div class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
+            <div
+                class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
                 <a href="#">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita4.jpg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" style="font-size: 22px;">BMKG Ungkap Kronologi Tsunami Selat Sunda 22 Desember 2018</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                            style="font-size: 22px;">BMKG Ungkap Kronologi Tsunami Selat Sunda 22 Desember 2018</h5>
                     </a>
                 </div>
             </div>
 
-            <div class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
+            <div
+                class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
                 <a href="#">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita5.jpg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" style="font-size: 22px;">10 Tsunami Terdahsyat di Dunia, 3 di Indonesia</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                            style="font-size: 22px;">10 Tsunami Terdahsyat di Dunia, 3 di Indonesia</h5>
                     </a>
                 </div>
             </div>
@@ -248,53 +277,64 @@
 
         <!-- Berita Bawah -->
         <div class="grid grid-cols-4 grid-rows-4 gap-4">
-            <div class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-2 row-span-2">
+            <div
+                class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-2 row-span-2">
                 <a href="#">
                     <img class="rounded-t-lg h-55" src="asset/ber6.webp" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h4 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white " style="font-size: 28px;">Daftar Wilayah Berpotensi Terdampak Tsunami Gempa Megathrust, BRIN: Gelombang Bisa sampai Jakarta</h4>
+                        <h4 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white "
+                            style="font-size: 28px;">Daftar Wilayah Berpotensi Terdampak Tsunami Gempa Megathrust, BRIN:
+                            Gelombang Bisa sampai Jakarta</h4>
                     </a>
                 </div>
             </div>
-            <div class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
+            <div
+                class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
                 <a href="#">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita7.jpeg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Pembangunan Aceh Setelah 20 Tahun Berlalu Pasca Tsunami</h5>
+                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Pembangunan Aceh
+                            Setelah 20 Tahun Berlalu Pasca Tsunami</h5>
                     </a>
                 </div>
             </div>
-            <div class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
+            <div
+                class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
                 <a href="#">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita8.jpg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Indonesia Rujukan Global Pengembangan Sistem Peringatan Dini Tsunami</h5>
+                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Indonesia Rujukan
+                            Global Pengembangan Sistem Peringatan Dini Tsunami</h5>
                     </a>
                 </div>
             </div>
-            <div class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
+            <div
+                class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
                 <a href="#">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita9.jpeg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Tak Bisa Diprediksi, Yang Terpenting Adalah Mitigasi Bencana Gempa Bumi dan Tsunami</h5>
+                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Tak Bisa Diprediksi,
+                            Yang Terpenting Adalah Mitigasi Bencana Gempa Bumi dan Tsunami</h5>
                     </a>
                 </div>
             </div>
-            <div class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
+            <div
+                class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
                 <a href="#">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita10.jpg" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
-                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Tanggap Bencana, BPBD Bantul Gelar Simulasi Penanggulangan Tsunami</h5>
+                        <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Tanggap Bencana, BPBD
+                            Bantul Gelar Simulasi Penanggulangan Tsunami</h5>
                     </a>
                 </div>
             </div>

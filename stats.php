@@ -151,6 +151,19 @@
                     </div>
                 </button>
             </a>
+            <a href="berita.php">
+                <button href="data.php"
+                    class="hover:ml-4 w-full text-white hover:bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                    </svg>
+                    <div>
+                        Berita
+                    </div>
+                </button>
+            </a>
         </div>
         <!-- MINI SIDEBAR-->
         <div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
@@ -176,6 +189,14 @@
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </svg>
+            </a>
+            <a href="berita.php"
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
                 </svg>
             </a>
         </div>
@@ -318,6 +339,7 @@
                         <!-- <div class=" w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"> -->
                         <div class="flex justify-between">
                             <div>
+<<<<<<< HEAD
                                 <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">
                                 <?php
                                 // Example data for the sum series
@@ -350,6 +372,54 @@
 
                             </div>
                         </div>
+=======
+                                <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">32.4k
+                                </h5>
+                                <p class="text-base font-normal text-gray-500 dark:text-gray-400">Korban jiwa
+                                </p>
+                            </div>
+                        </div>
+                        <div id="area-chart"></div>
+                        <div
+                            class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                            <div class="flex justify-between items-center pt-5">
+                                <!-- Button -->
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
+                                    data-dropdown-placement="bottom"
+                                    class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                                    type="button">
+                                    Last 7 days
+                                    <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                                <!-- Dropdown menu -->
+                                <div id="lastDaysdropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
+                                                7 days</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
+                                                30 days</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
+                                                90 days</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+>>>>>>> 2ff71fa32e57b201e0db55d5671a6293789425b4
                     </div>
                     <script>
                         const options = {
@@ -397,6 +467,7 @@
                             },
                             series: [
                                 {
+<<<<<<< HEAD
                                     name: "Kejadian Tsunami",
                                     data: [1
                                         , 1
@@ -481,10 +552,15 @@
                                         , 1
                                         , 2
                                         , 2], //diisi jumlah tsunami
+=======
+                                    name: "Korban Jiwa",
+                                    data: [6500, 6418, 6456, 6526, 6356, 6456], //diisi jumlah tsunami
+>>>>>>> 2ff71fa32e57b201e0db55d5671a6293789425b4
                                     color: "#1A56DB",
                                 },
                             ],
                             xaxis: {
+<<<<<<< HEAD
                                 categories: ["1608",
                                     "1629",
                                     "1673",
@@ -568,6 +644,9 @@
                                     "2019",
                                     "2021",
                                     "2023"], // diisi range waktu tsunami
+=======
+                                categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'], // diisi range waktu tsunami
+>>>>>>> 2ff71fa32e57b201e0db55d5671a6293789425b4
                                 labels: {
                                     show: false,
                                 },
