@@ -709,6 +709,87 @@
                 </div>
             </div>
         </section>
+
+
+        <!-- dampak -->
+        <div data-aos="zoom-in-up" class="text-center delay-100">
+            <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
+                Dampak Tsunami
+            </h2>
+            <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <section class="max-w-6xl mx-auto p-6 bg-white">
+            <!-- Dampak Negatif -->
+            <div class="mb-16">
+                <h3 data-aos="zoom-in-up" class="text-2xl font-bold text-red-600 mb-6 delay-100">Dampak Negatif</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div data-aos="zoom-in-up" class="delay-200">
+                        <img class="w-full rounded-lg shadow-lg" src="asset/dampaknegatif.jpg" alt="dampaknegatif" />
+                    </div>
+                    <div data-aos="zoom-in-up" class="delay-300">
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-lg text-red-600 mb-2">Kerusakan Infrastruktur</h4>
+                                <ul class="list-disc ml-4 text-gray-800">
+                                    <li>Menghancurkan bangunan, jalan, dan jembatan</li>
+                                    <li>Merusak sistem komunikasi dan listrik</li>
+                                    <li>Menghancurkan fasilitas publik dan tempat tinggal</li>
+                                </ul>
+                            </div>
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-lg text-red-600 mb-2">Dampak Sosial dan Kesehatan</h4>
+                                <ul class="list-disc ml-4 text-gray-800">
+                                    <li>Korban jiwa dan cedera fisik</li>
+                                    <li>Trauma psikologis pada korban selamat</li>
+                                    <li>Kehilangan tempat tinggal dan mata pencaharian</li>
+                                    <li>Risiko penyakit akibat sanitasi buruk</li>
+                                </ul>
+                            </div>
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-lg text-red-600 mb-2">Dampak Lingkungan</h4>
+                                <ul class="list-disc ml-4 text-gray-800">
+                                    <li>Kerusakan ekosistem pesisir</li>
+                                    <li>Pencemaran air dan tanah</li>
+                                    <li>Gangguan terhadap habitat flora dan fauna</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dampak Positif -->
+            <div>
+                <h3 data-aos="zoom-in-up" class="text-2xl font-bold text-blue-600 mb-6 delay-100">Dampak Positif</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div data-aos="zoom-in-up" class="delay-200">
+                        <img class="w-full rounded-lg shadow-lg" src="asset/dampakpositif.jpg" alt="dampakpositif" />
+                    </div>
+                    <div data-aos="zoom-in-up" class="delay-300">
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-semibold text-lg text-blue-600 mb-2">Peningkatan Kesadaran dan
+                                    Penelitian</h4>
+                                <ul class="list-disc ml-4 text-gray-800">
+                                    <li>Meningkatkan kesadaran masyarakat tentang pentingnya kesiapsiagaan bencana</li>
+                                    <li>Mendorong penelitian dan pengembangan teknologi peringatan dini</li>
+                                    <li>Memperkuat sistem monitoring dan deteksi tsunami</li>
+                                </ul>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-semibold text-lg text-blue-600 mb-2">Perbaikan Infrastruktur</h4>
+                                <ul class="list-disc ml-4 text-gray-800">
+                                    <li>Pembangunan infrastruktur yang lebih tahan bencana</li>
+                                    <li>Penataan ulang wilayah pesisir dengan konsep mitigasi bencana</li>
+                                    <li>Pengembangan jalur evakuasi dan tempat perlindungan yang lebih baik</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
