@@ -235,7 +235,7 @@
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-       <!-- Pengertian -->
+        <!-- Pengertian -->
         <section class="max-w-6xl mx-auto space-y-8 p-6 bg-white">
             <header data-aos="zoom-in-up" class="text-center delay-100">
                 <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
@@ -269,7 +269,8 @@
                 <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
                     <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
                         <div class="h-4/5">
-                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/gempa.png" alt="gempa">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/penyebab_gempa.png"
+                                alt="gempa">
                         </div>
                         <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
                             <h3 class="text-xl font-bold text-center text-gray-800">Gempa Bumi</h3>
@@ -296,7 +297,7 @@
                 <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
                     <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
                         <div class="h-4/5">
-                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/letusangunung.png"
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/penyebab_gunungberapi.png"
                                 alt="gunung berapi">
                         </div>
                         <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
@@ -323,7 +324,8 @@
                 <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
                     <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
                         <div class="h-4/5">
-                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/longsor.png" alt="longsor">
+                            <img class="h-full w-full rounded-t-xl object-cover"
+                                src="asset/penyebab_longsorbawahlaut.png" alt="longsor">
                         </div>
                         <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
                             <h3 class="text-xl font-bold text-center text-gray-800">Longsor Bawah Laut</h3>
@@ -348,7 +350,8 @@
                 <div class="card-container relative h-full w-full transition-transform duration-500 transform-style-3d">
                     <div class="card-front absolute inset-0 rounded-x1 shadow-lg">
                         <div class="h-4/5">
-                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/meteor.png" alt="meteor">
+                            <img class="h-full w-full rounded-t-xl object-cover" src="asset/penyebab_meteor.png"
+                                alt="meteor">
                         </div>
                         <div class="h-1/5 bg-white rounded-b-xl p-4 shadow-md">
                             <h3 class="text-xl font-bold text-center text-gray-800">Hantaman Meteor</h3>
