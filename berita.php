@@ -313,6 +313,9 @@
                             Global Pengembangan Sistem Peringatan Dini Tsunami</h5>
                     </a>
                 </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                </button>
             </div>
             <div
                 class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
