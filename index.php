@@ -658,7 +658,7 @@
                 </div>
 
                 <!-- Pasca Bencana Card -->
-                <div data-aos="zoom-in-right" class="bg-white rounded-2xl shadow-lg p-8 delay-400">
+                <div data-aos="zoom-in-right" class="bg-white rounded-2xl shadow-2xl p-8 delay-400">
                     <h3 class="text-2xl text-center font-bold mb-4">Pasca Bencana</h3>
                     <div class="space-y-4 mb-8">
                         <div class="border-b pb-4">
