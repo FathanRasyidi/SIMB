@@ -589,6 +589,106 @@
                 </div>
             </div>
         </section>
+
+
+        <!-- Penanggulangan -->
+        <div data-aos="zoom-in-up" class="text-center delay-100">
+            <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
+                Penanggulangan Tsunami
+            </h2>
+            <div class="w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <section class="max-w-6xl mx-auto p-6">
+            <p data-aos="zoom-in-up" class="text-lg text-justify mb-14 delay-200">
+                Menurut Undang-Undang Nomor 24 Tahun 2007 tentang Penanggulangan Bencana, penyelenggaraan penanggulangan
+                bencana adalah serangkaian upaya yang meliputi penetapan kebijakan pembangunan yang berisiko menimbulkan
+                bencana, kegiatan pencegahan bencana, tanggap darurat, dan rehabilitasi.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pra Bencana Card -->
+                <div data-aos="zoom-in-left" class="bg-white rounded-2xl shadow-2xl p-8 delay-400">
+                    <h3 class="text-2xl text-center font-bold mb-4">Pra Bencana</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="border-b pb-4">
+                            <h4 class="font-semibold text-lg mb-2">Pencegahan</h4>
+                            <ul class="list-disc ml-4 text-gray-800">
+                                <li>Pemetaan wilayah rawan tsunami</li>
+                                <li>Pemasangan alarm bencana</li>
+                                <li>Penegakan peraturan tata ruang wilayah pesisir</li>
+                            </ul>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h4 class="font-semibold text-lg mb-2">Mitigasi</h4>
+                            <ul class="list-disc ml-4 text-gray-800">
+                                <li>Penanaman dana pelestarian hutan mangrove</li>
+                                <li>Pembuatan jalur evakuasi dan tempat pengungsian</li>
+                                <li>Pembangunan infrastruktur</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2">Kesiapsiagaan</h4>
+                            <ul class="list-disc ml-4 text-gray-800">
+                                <li>Edukasi masyarakat tentang tsunami (sosialisasi dan penyuluhan)</li>
+                                <li>Pelatihan dan simulasi evakuasi rutin</li>
+                                <li>Persediaan logistik dan perlengkapan darurat</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tanggap Darurat Card -->
+                <div data-aos="zoom-in-up"
+                    class="bg-blue-600 rounded-2xl shadow-lg p-8 text-white transform scale-105 delay-300">
+                    <h3 class="text-2xl text-center font-bold mb-4">Tanggap Darurat</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="border-b border-blue-400 pb-4">
+                            <h4 class="font-semibold text-lg mb-2">Tanggap Darurat</h4>
+                            <ul class="list-disc ml-4 text-blue-100">
+                                <li>Mengaktifkan sistem peringatan dini tsunami</li>
+                                <li>Evakuasi penduduk ke tempat yang lebih tinggi/aman</li>
+                                <li>Memberikan penyelamatan dan pertolongan pertama pada korban</li>
+                                <li>Koordinasi berbagai pihak untuk memobilisasi sumber daya yang dibutuhkan</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-blue-400 pb-4">
+                            <h4 class="font-semibold text-lg mb-2">Respon Bencana</h4>
+                            <ul class="list-disc ml-4 text-blue-100">
+                                <li>Mendirikan pos komando dan posko bantuan</li>
+                                <li>Melakukan pencarian dan penyelamatan korban</li>
+                                <li>Distribusi bantuan logistik dan medis</li>
+                                <li>Koordinasi tim</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pasca Bencana Card -->
+                <div data-aos="zoom-in-right" class="bg-white rounded-2xl shadow-lg p-8 delay-400">
+                    <h3 class="text-2xl text-center font-bold mb-4">Pasca Bencana</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="border-b pb-4">
+                            <h4 class="font-semibold text-lg mb-2">Pemulihan</h4>
+                            <ul class="list-disc ml-4 text-gray-800">
+                                <li>Memulihkan layanan dasar, seperti listrik, air, dan komunikasi</li>
+                                <li>Memberikan bantuan psikososial pada korban trauma</li>
+                                <li>Rehabilitasi psikososial</li>
+                                <li>Pemulihan sosial</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2">Rekonstruksi</h4>
+                            <ul class="list-disc ml-4 text-gray-800">
+                                <li>Membangun kembali infrastruktur yang rusak</li>
+                                <li>Merelokasi permukiman ke daerah yang lebih aman</li>
+                                <li>Menerapkan standar bangunan tahan tsunami</li>
+                                <li>Membersihkan puing-puing dan reruntuhan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
