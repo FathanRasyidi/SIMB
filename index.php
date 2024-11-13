@@ -235,8 +235,7 @@
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        Tsunami adalah serapan dari bahasa Jepang 津波 (tsunami): tsu (pelabuhan), dan nami (gelombang) yang dimaksud dengan gelombang air besar yang diakibatkan oleh gangguan di bawah laut, seperti gempa bumi, longsor, letusan gunung berapi, atau jatuhnya meteor. 
-        <!-- Pengertian -->
+       <!-- Pengertian -->
         <section class="max-w-6xl mx-auto space-y-8 p-6 bg-white">
             <header data-aos="zoom-in-up" class="text-center delay-100">
                 <h2 class="text-3xl font-bold mt-12 text-blue-600 inline-block">
