@@ -1,3 +1,19 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tsunami";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+//untuk ambil data di db
+$sql = "SELECT * FROM data_tsunami ORDER BY YEAR(STR_TO_DATE(Waktu_kejadian, '%W, %M %d, %Y')) DESC";
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -283,7 +299,7 @@
 
                         series: [{
                             data: data,
-                            name: 'Jumlah bencana',
+                            name: 'Korban terdampak',
                             states: {
                                 hover: {
                                     color: '#3b729f'
@@ -296,7 +312,7 @@
                         }, {
                             // Bubble series
                             type: 'mapbubble',
-                            name: 'Potensi tsunami',
+                            name: 'Tsunami terbaru',
                             joinBy: ['hc-key', 'code'],
                             data: [
                                 { code: 'id-ac', z: 200 },
@@ -312,7 +328,7 @@
                             minSize: 4,
                             maxSize: '12%',
                             tooltip: {
-                                pointFormat: '{point.code}: {point.z} thousands'
+                                pointFormat: '{point.code}: {point.z} korban'
                             },
                         }]
                     });
@@ -324,12 +340,53 @@
                 <!-- Latest Tsunami Data -->
                 <div class="bg-white rounded-lg shadow p-4">
                     <h2 class="font-semibold text-lg mb-4">Tsunami Terbaru</h2>
-                    <ul>
-                        <li>M 7.2 - 02-03-2021 - 07:30:30 WIB - 12 km Enggano - Bengkulu</li>
-                        <li>M 5.1 - 01-03-2021 - 08:15:30 WIB - 11 km Sumur - Banten</li>
-                        <li>M 4.7 - 28-02-2021 - 06:45:20 WIB - 15 km Toli Toli - Sulawesi Tengah</li>
-                        <li>M 4.8 - 27-02-2021 - 10:15:10 WIB - 18 km Jayapura - Papua</li>
-                    </ul>
+                    <div class="flex flex-col">
+                        <div class="-m-1.5 overflow-x-auto">
+                            <div class="p-1.5 min-w-full inline-block align-middle">
+                                <div
+                                    class="border rounded-lg shadow overflow-hidden dark:border-neutral-700 dark:shadow-gray-900">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                    Waktu kejadian</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                    Lokasi kejadian</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                    Elevasi gelombang</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                    Penyebab</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200">
+                                            <?php if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) { ?>
+                                            <tr>
+                                                <td
+                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                    <?php echo $row['Waktu_kejadian'] ?></td>
+                                                <td
+                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                    <?php echo $row['Lokasi_KabKota'] ?></td>
+                                                <td
+                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                    <?php echo $row['Elevasi_gelombang_tsunami_m'] ?></td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                                <?php echo $row['Sebab_tsunami'] ?>
+                                                </td>
+                                            </tr>
+                                            <?php }
+                                            } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Tsunami Graph -->
@@ -340,18 +397,100 @@
                         <div class="flex justify-between">
                             <div>
                                 <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">
-                                <?php
-                                // Example data for the sum series
-                                $tsunami_data = [
-                                    1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 4, 1, 5, 1, 1, 1, 1, 1, 2, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 1, 1, 5, 1, 2, 1, 3, 2, 2, 1, 2, 6, 2, 2, 1, 1, 5, 1, 2, 2
-                                ];
+                                    <?php
+                                    // Example data for the sum series
+                                    $tsunami_data = [
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        4,
+                                        1,
+                                        5,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        2,
+                                        2,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        5,
+                                        1,
+                                        2,
+                                        1,
+                                        3,
+                                        2,
+                                        2,
+                                        1,
+                                        2,
+                                        6,
+                                        2,
+                                        2,
+                                        1,
+                                        1,
+                                        5,
+                                        1,
+                                        2,
+                                        2
+                                    ];
 
-                                // Calculate the sum of the series
-                                $sum_series = array_sum($tsunami_data);
+                                    // Calculate the sum of the series
+                                    $sum_series = array_sum($tsunami_data);
 
-                                // Output the sum
-                                echo $sum_series;
-                                ?>
+                                    // Output the sum
+                                    echo $sum_series;
+                                    ?>
                                 </h5>
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Bencana tsunami
                                 </p>
@@ -368,297 +507,252 @@
                                     type="button">
                                     Riwayat kejadian tsunami
                                 </button>
-
-                            </div>
-                        </div>
-                                <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">32.4k
-                                </h5>
-                                <p class="text-base font-normal text-gray-500 dark:text-gray-400">Korban jiwa
-                                </p>
-                            </div>
-                        </div>
-                        <div id="area-chart"></div>
-                        <div
-                            class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                            <div class="flex justify-between items-center pt-5">
-                                <!-- Button -->
-                                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
-                                    data-dropdown-placement="bottom"
-                                    class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                                    type="button">
-                                    Last 7 days
-                                    <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg>
-                                </button>
-                                <!-- Dropdown menu -->
-                                <div id="lastDaysdropdown"
-                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                        aria-labelledby="dropdownDefaultButton">
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                                7 days</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                                30 days</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                                90 days</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <script>
-                        const options = {
-                            chart: {
-                                height: "100%",
-                                maxWidth: "100%",
-                                type: "area",
-                                fontFamily: "Inter, sans-serif",
-                                dropShadow: {
-                                    enabled: false,
-                                },
-                                toolbar: {
-                                    show: false,
-                                },
-                            },
-                            tooltip: {
-                                enabled: true,
-                                x: {
-                                    show: false,
-                                },
-                            },
-                            fill: {
-                                type: "gradient",
-                                gradient: {
-                                    opacityFrom: 0.55,
-                                    opacityTo: 0,
-                                    shade: "#1C64F2",
-                                    gradientToColors: ["#1C64F2"],
-                                },
-                            },
-                            dataLabels: {
-                                enabled: false,
-                            },
-                            stroke: {
-                                width: 6,
-                            },
-                            grid: {
-                                show: false,
-                                strokeDashArray: 4,
-                                padding: {
-                                    left: 2,
-                                    right: 2,
-                                    top: 0
-                                },
-                            },
-                            series: [
-                                {
-                                    name: "Kejadian Tsunami",
-                                    data: [1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 4
-                                        , 1
-                                        , 5
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 3
-                                        , 3
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 1
-                                        , 5
-                                        , 1
-                                        , 2
-                                        , 1
-                                        , 3
-                                        , 2
-                                        , 2
-                                        , 1
-                                        , 2
-                                        , 6
-                                        , 2
-                                        , 2
-                                        , 1
-                                        , 1
-                                        , 5
-                                        , 1
-                                        , 2
-                                        , 2], //diisi jumlah tsunami
-                                    color: "#1A56DB",
-                                },
-                            ],
-                            xaxis: {
-                                categories: ["1608",
-                                    "1629",
-                                    "1673",
-                                    "1674",
-                                    "1708",
-                                    "1710",
-                                    "1711",
-                                    "1754",
-                                    "1763",
-                                    "1770",
-                                    "1775",
-                                    "1797",
-                                    "1815",
-                                    "1818",
-                                    "1820",
-                                    "1833",
-                                    "1841",
-                                    "1843",
-                                    "1845",
-                                    "1846",
-                                    "1851",
-                                    "1852",
-                                    "1854",
-                                    "1855",
-                                    "1856",
-                                    "1857",
-                                    "1859",
-                                    "1860",
-                                    "1861",
-                                    "1864",
-                                    "1871",
-                                    "1876",
-                                    "1882",
-                                    "1883",
-                                    "1885",
-                                    "1889",
-                                    "1891",
-                                    "1892",
-                                    "1899",
-                                    "1900",
-                                    "1907",
-                                    "1908",
-                                    "1914",
-                                    "1917",
-                                    "1921",
-                                    "1927",
-                                    "1928",
-                                    "1930",
-                                    "1931",
-                                    "1936",
-                                    "1938",
-                                    "1939",
-                                    "1948",
-                                    "1950",
-                                    "1957",
-                                    "1964",
-                                    "1965",
-                                    "1967",
-                                    "1968",
-                                    "1969",
-                                    "1977",
-                                    "1979",
-                                    "1981",
-                                    "1983",
-                                    "1992",
-                                    "1994",
-                                    "1995",
-                                    "1996",
-                                    "2000",
-                                    "2004",
-                                    "2005",
-                                    "2006",
-                                    "2007",
-                                    "2008",
-                                    "2009",
-                                    "2010",
-                                    "2012",
-                                    "2014",
-                                    "2016",
-                                    "2018",
-                                    "2019",
-                                    "2021",
-                                    "2023"], // diisi range waktu tsunami
-                                labels: {
-                                    show: false,
-                                },
-                                axisBorder: {
-                                    show: false,
-                                },
-                                axisTicks: {
-                                    show: false,
-                                },
-                            },
-                            yaxis: {
-                                show: false,
-                            },
-                        }
-
-                        if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
-                            const chart = new ApexCharts(document.getElementById("area-chart"), options);
-                            chart.render();
-                        }
-                    </script>
-                    <!-- Placeholder for graph -->
                 </div>
             </div>
+            <script>
+                const options = {
+                    chart: {
+                        height: "100%",
+                        maxWidth: "100%",
+                        type: "area",
+                        fontFamily: "Inter, sans-serif",
+                        dropShadow: {
+                            enabled: false,
+                        },
+                        toolbar: {
+                            show: false,
+                        },
+                    },
+                    tooltip: {
+                        enabled: true,
+                        x: {
+                            show: false,
+                        },
+                    },
+                    fill: {
+                        type: "gradient",
+                        gradient: {
+                            opacityFrom: 0.55,
+                            opacityTo: 0,
+                            shade: "#1C64F2",
+                            gradientToColors: ["#1C64F2"],
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false,
+                    },
+                    stroke: {
+                        width: 6,
+                    },
+                    grid: {
+                        show: false,
+                        strokeDashArray: 4,
+                        padding: {
+                            left: 2,
+                            right: 2,
+                            top: 0
+                        },
+                    },
+                    series: [
+                        {
+                            name: "Kejadian Tsunami",
+                            data: [1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 4
+                                , 1
+                                , 5
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 3
+                                , 3
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 2
+                                , 2
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 5
+                                , 1
+                                , 2
+                                , 1
+                                , 3
+                                , 2
+                                , 2
+                                , 1
+                                , 2
+                                , 6
+                                , 2
+                                , 2
+                                , 1
+                                , 1
+                                , 5
+                                , 1
+                                , 2
+                                , 2], //diisi jumlah tsunami
+                            color: "#1A56DB",
+                        },
+                    ],
+                    xaxis: {
+                        categories: ["1608",
+                            "1629",
+                            "1673",
+                            "1674",
+                            "1708",
+                            "1710",
+                            "1711",
+                            "1754",
+                            "1763",
+                            "1770",
+                            "1775",
+                            "1797",
+                            "1815",
+                            "1818",
+                            "1820",
+                            "1833",
+                            "1841",
+                            "1843",
+                            "1845",
+                            "1846",
+                            "1851",
+                            "1852",
+                            "1854",
+                            "1855",
+                            "1856",
+                            "1857",
+                            "1859",
+                            "1860",
+                            "1861",
+                            "1864",
+                            "1871",
+                            "1876",
+                            "1882",
+                            "1883",
+                            "1885",
+                            "1889",
+                            "1891",
+                            "1892",
+                            "1899",
+                            "1900",
+                            "1907",
+                            "1908",
+                            "1914",
+                            "1917",
+                            "1921",
+                            "1927",
+                            "1928",
+                            "1930",
+                            "1931",
+                            "1936",
+                            "1938",
+                            "1939",
+                            "1948",
+                            "1950",
+                            "1957",
+                            "1964",
+                            "1965",
+                            "1967",
+                            "1968",
+                            "1969",
+                            "1977",
+                            "1979",
+                            "1981",
+                            "1983",
+                            "1992",
+                            "1994",
+                            "1995",
+                            "1996",
+                            "2000",
+                            "2004",
+                            "2005",
+                            "2006",
+                            "2007",
+                            "2008",
+                            "2009",
+                            "2010",
+                            "2012",
+                            "2014",
+                            "2016",
+                            "2018",
+                            "2019",
+                            "2021",
+                            "2023"], // diisi range waktu tsunami
+                        labels: {
+                            show: false,
+                        },
+                        axisBorder: {
+                            show: false,
+                        },
+                        axisTicks: {
+                            show: false,
+                        },
+                    },
+                    yaxis: {
+                        show: false,
+                    },
+                }
+
+                if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
+                    const chart = new ApexCharts(document.getElementById("area-chart"), options);
+                    chart.render();
+                }
+            </script>
+            <!-- Placeholder for graph -->
         </div>
+    </div>
+    </div>
     </div>
     </div>
 
