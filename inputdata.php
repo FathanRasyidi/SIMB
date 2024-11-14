@@ -1,3 +1,36 @@
+<?php
+$conn = mysqli_connect("localhost", "root", "", "tsunami");
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nama_orang = $_POST['nama_orang'];
+    $nama_bencana = $_POST['nama_bencana'];
+    $foto = $_FILES['foto']['tmp_name'];
+
+    $fotoContent = addslashes(file_get_contents($foto));
+
+
+    $sql = "INSERT INTO orang_hilang (nama_orang, nama_bencana, foto) VALUES ('$nama_orang', '$nama_bencana', '$fotoContent')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "
+            <script>
+            alert('data berhasil ditambahkan!');
+            document.location.href='data.php';
+            </script>
+        ";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
