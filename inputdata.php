@@ -78,7 +78,9 @@
                     }
 
                     function checkTime(i) {
-                        if (i < 10) { i = "0" + i };
+                        if (i < 10) {
+                            i = "0" + i
+                        };
                         return i;
                     }
                 </script>
@@ -201,9 +203,29 @@
 
     </aside>
     <!-- Isian -->
-    <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        isi apa ini guys
+    <div class="flex justify-center items-center min-h-screen bg-[#eef0f2] px-4">
+        <div id="form-container" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <div class="text-center p-5">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">Input Data Orang Hilang</h2>
+            </div>
+            <form action="inputdata.php" method="post" enctype="multipart/form-data">
+                <div class="mb-6">
+                    <label for="nama_orang" class="block text-gray-700 font-semibold mb-2">Nama Orang:</label>
+                    <input type="text" id="nama_orang" name="nama_orang" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="nama_bencana" class="block text-gray-700 font-semibold mb-2">Nama Bencana:</label>
+                    <input type="text" id="nama_bencana" name="nama_bencana" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="foto" class="block text-gray-700 font-semibold mb-2">Foto:</label>
+                    <input type="file" id="foto" name="foto" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <button type="submit" name="submit" class="w-full p-3 rounded-lg text-white font-semibold" style="background-color: #007BFF;">Submit</button>
+            </form>
+        </div>
     </div>
+
 
     <script>
         const sidebar = document.querySelector("aside");
