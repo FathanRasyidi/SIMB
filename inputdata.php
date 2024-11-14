@@ -1,12 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Data Orang Hilang</title>
+    <title>Tsunami Warning Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
     <link rel="stylesheet" href="font/stylesheet.css">
     <style>
         body {
@@ -64,51 +64,6 @@
                     <div style="font-size: 10px; line-height: 1;">Detik</div>
                     <div id="detik" class="text-center" style="font-size: 25px; line-height: 1; width: 20px"></div>
                 </div>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Input Data Orang Hilang</title>
-                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-                </head>
-                <?php
-                // Koneksi ke database
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "tsunami";
-
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Cek koneksi
-                if ($conn->connect_error) {
-                    die("Koneksi gagal: " . $conn->connect_error);
-                }
-
-                // Proses form saat submit
-                if (isset($_POST['submit'])) {
-                    $nama_orang = $_POST['nama_orang'];
-                    $nama_bencana = $_POST['nama_bencana'];
-
-                    // Upload foto
-                    $foto = $_FILES['foto']['name'];
-                    $target_dir = "uploads/";
-                    $target_file = $target_dir . basename($foto);
-
-                    // Simpan file ke folder uploads
-                    if (move_uploaded_file($_FILES['foto']['tmp_name'], $target_file)) {
-                        $sql = "INSERT INTO orang_hilang (nama_orang, nama_bencana, foto) VALUES ('$nama_orang', '$nama_bencana', '$foto')";
-
-                        if ($conn->query($sql) === TRUE) {
-                            echo "<p class='text-green-500'>Data berhasil disimpan.</p>";
-                        } else {
-                            echo "<p class='text-red-500'>Error: " . $sql . "<br>" . $conn->error . "</p>";
-                        }
-                    } else {
-                        echo "<p class='text-red-500'>Gagal mengunggah foto.</p>";
-                    }
-                }
-
-                $conn->close();
-                ?>
                 <script>
                     function startTime() {
                         const today = new Date();
@@ -124,7 +79,9 @@
                     }
 
                     function checkTime(i) {
-                        if (i < 10) { i = "0" + i };
+                        if (i < 10) {
+                            i = "0" + i
+                        };
                         return i;
                     }
                 </script>
@@ -195,6 +152,19 @@
                     </div>
                 </button>
             </a>
+            <a href="berita.php">
+                <button href="data.php"
+                    class="hover:ml-4 w-full text-white hover:bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                    </svg>
+                    <div>
+                        Berita
+                    </div>
+                </button>
+            </a>
         </div>
         <!-- MINI SIDEBAR-->
         <div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
@@ -222,14 +192,48 @@
                         d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                 </svg>
             </a>
+            <a href="berita.php"
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                </svg>
+            </a>
         </div>
 
     </aside>
     <!-- Isian -->
-    <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
+    <div class="flex justify-center items-center min-h-screen bg-[#eef0f2] px-4">
+        <div id="form-container" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <div class="text-center p-5">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">Input Data Orang Hilang</h2>
+            </div>
+            <form action="inputdata.php" method="post" enctype="multipart/form-data">
+                <div class="mb-6">
+                    <label for="nama_orang" class="block text-gray-700 font-semibold mb-2">Nama Orang:</label>
+                    <input type="text" id="nama_orang" name="nama_orang"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
+                </div>
+                <div class="mb-6">
+                    <label for="nama_bencana" class="block text-gray-700 font-semibold mb-2">Nama Bencana:</label>
+                    <input type="text" id="nama_bencana" name="nama_bencana"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
+                </div>
+                <div class="mb-6">
+                    <label for="foto" class="block text-gray-700 font-semibold mb-2">Foto:</label>
+                    <input type="file" id="foto" name="foto"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
+                </div>
+                <button type="submit" name="submit" class="w-full p-3 rounded-lg text-white font-semibold"
+                    style="background-color: #007BFF;">Submit</button>
+            </form>
+        </div>
     </div>
 
-    </div>
 
     <script>
         const sidebar = document.querySelector("aside");

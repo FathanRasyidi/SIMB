@@ -1,3 +1,19 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tsunami";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+//untuk ambil data di db
+$sql = "SELECT * FROM data_tsunami ORDER BY YEAR(STR_TO_DATE(Waktu_kejadian, '%W, %M %d, %Y')) DESC";
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +47,7 @@
 </head>
 
 <body class="body" onload="startTime()">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <div class="fixed w-full z-30 flex bg-white p-2 items-center justify-between h-20 px-10 pr-4 shadow-lg">
         <div class="logo ml-12 transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
             <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500"
@@ -150,231 +167,594 @@
                     </div>
                 </button>
             </a>
+            <a href="berita.php">
+                <button href="data.php"
+                    class="hover:ml-4 w-full text-white hover:bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                    </svg>
+                    <div>
+                        Berita
+                    </div>
+                </button>
+            </a>
         </div>
         <!-- MINI SIDEBAR-->
         <div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
-                <a href="index.php"
-                    class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                        stroke="currentColor" class="w-4 h-4">
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
-                </a>
-                <a href="stats.php"
-                    class="justify-end pr-4 ml-1 text-white bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-                    </svg>
-                </a>
-                <a href="data.php"
-                    class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
-                    </svg>
-                </a>
+            <a href="index.php"
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                    stroke="currentColor" class="w-4 h-4">
+                    <path strokeLinecap="round" strokeLinejoin="round"
+                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+            </a>
+            <a href="stats.php"
+                class="justify-end pr-4 ml-1 text-white bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                </svg>
+            </a>
+            <a href="data.php"
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </svg>
+            </a>
+            <a href="berita.php"
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                </svg>
+            </a>
         </div>
 
     </aside>
     <!-- Isian -->
     <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
-            <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-            <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-            <div class="flex-grow p-6">
-                <div id="container"></div>
-                <script>(async () => {
+        <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+        <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+        <div class="flex-grow p-6">
+            <div id="container"></div>
+            <script>(async () => {
 
-                        const topology = await fetch(
-                            'https://code.highcharts.com/mapdata/countries/id/id-all.topo.json'
-                        ).then(response => response.json());
+                    const topology = await fetch(
+                        'https://code.highcharts.com/mapdata/countries/id/id-all.topo.json'
+                    ).then(response => response.json());
 
-                        // Prepare demo data. The data is joined to map using value of 'hc-key'
-                        // property by default. See API docs for 'joinBy' for more info on linking
-                        // data and map.
-                        const data = [
-                            ['id-3700', 10], ['id-ac', 11], ['id-jt', 12], ['id-be', 13],
-                            ['id-bt', 14], ['id-kb', 15], ['id-bb', 16], ['id-ba', 17],
-                            ['id-ji', 18], ['id-ks', 19], ['id-nt', 20], ['id-se', 21],
-                            ['id-kr', 22], ['id-ib', 23], ['id-su', 24], ['id-ri', 25],
-                            ['id-sw', 26], ['id-ku', 27], ['id-la', 28], ['id-sb', 29],
-                            ['id-ma', 30], ['id-nb', 31], ['id-sg', 32], ['id-st', 33],
-                            ['id-pa', 34], ['id-jr', 35], ['id-ki', 36], ['id-1024', 37],
-                            ['id-jk', 38], ['id-go', 39], ['id-yo', 40], ['id-sl', 41],
-                            ['id-sr', 42], ['id-ja', 43], ['id-kt', 44]
-                        ];
+                    // Prepare demo data. The data is joined to map using value of 'hc-key'
+                    // property by default. See API docs for 'joinBy' for more info on linking
+                    // data and map.
+                    const data = [
+                        ['id-3700', 10, 'Riau'],
+                        ['id-ac', 11, 'Aceh'],
+                        ['id-jt', 12, 'Jawa Tengah'],
+                        ['id-be', 13, 'Bengkulu'],
+                        ['id-bt', 14, 'Banten'],
+                        ['id-kb', 15, 'Kalimantan Barat'],
+                        ['id-bb', 16, 'Bangka Belitung'],
+                        ['id-ba', 17, 'Bali'],
+                        ['id-ji', 18, 'Jawa Timur'],
+                        ['id-ks', 19, 'Kalimantan Selatan'],
+                        ['id-nt', 20, 'NTT'],
+                        ['id-se', 21, 'Sulawesi Selatan'],
+                        ['id-kr', 22, 'Kepulauan Riau'],
+                        ['id-ib', 23, 'Irian jaya'],
+                        ['id-su', 24, 'Sumatra Utara'],
+                        ['id-ri', 25, 'Riau'],
+                        ['id-sw', 26, 'Sulawesi Utara'],
+                        ['id-ku', 27, 'Kepulauan Bangka Belitung'],
+                        ['id-la', 28, 'Maluku utara'],
+                        ['id-sb', 29, 'Sumatra Barat'],
+                        ['id-ma', 30, 'Maluku'],
+                        ['id-nb', 31, 'NTB'],
+                        ['id-sg', 32, 'Sulawesi Tenggara'],
+                        ['id-st', 33, 'Sulawesi Tengah'],
+                        ['id-pa', 34, 'Papua'],
+                        ['id-jr', 35, 'Jawa Barat'],
+                        ['id-ki', 36, 'Kalimantan timur'],
+                        ['id-1024', 37, 'Lampung'],
+                        ['id-jk', 38, 'DKI Jakarta'],
+                        ['id-go', 39, 'Gorontalo'],
+                        ['id-yo', 40, 'DI Yogyakarta'],
+                        ['id-sl', 41, 'Sumatra Selatan'],
+                        ['id-sr', 42, 'Sulawesi Barat'],
+                        ['id-ja', 43, 'Jambi'],
+                        ['id-kt', 44, 'Kalimantan Tengah']
+                    ];
 
-                        // Create the chart
-                        Highcharts.mapChart('container', {
-                            chart: {
-                                map: topology
+                    // Create the chart
+                    Highcharts.mapChart('container', {
+                        chart: {
+                            map: topology
+                        },
+
+                        title: {
+                            text: ''
+                        },
+
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+
+                        plotOptions: {
+                            series: {
+                                color: '#88a4bc'
                             },
+                            mapbubble: {
+                                color: '#dc2626'
+                            }
+                        },
 
-                            title: {
-                                text: ''
+                        series: [{
+                            data: data,
+                            name: 'Korban terdampak',
+                            states: {
+                                hover: {
+                                    color: '#3b729f'
+                                }
                             },
-
-                            mapNavigation: {
+                            dataLabels: {
                                 enabled: true,
-                                buttonOptions: {
-                                    verticalAlign: 'bottom'
-                                }
+                                format: '{point.name}'
+                            }
+                        }, {
+                            // Bubble series
+                            type: 'mapbubble',
+                            name: 'Tsunami terbaru',
+                            joinBy: ['hc-key', 'code'],
+                            data: [
+                                { code: 'id-ac', z: 200 },
+                                { code: 'id-jt', z: 300 },
+                                { code: 'id-be', z: 400 },
+                                { code: 'id-bt', z: 500 },
+                                { code: 'id-kb', z: 600 },
+                                { code: 'id-bb', z: 700 },
+                                { code: 'id-ba', z: 800 },
+                                { code: 'id-ji', z: 900 },
+                                { code: 'id-ks', z: 1000 }
+                            ],
+                            minSize: 4,
+                            maxSize: '12%',
+                            tooltip: {
+                                pointFormat: '{point.code}: {point.z} korban'
                             },
+                        }]
+                    });
 
-                            plotOptions: {
-                                series: {
-                                    color: '#88a4bc'
-                                },
-                                mapbubble: {
-                                    color: '#dc2626'
-                                }
-                            },
-
-                            series: [{
-                                data: data,
-                                name: 'Jumlah bencana',
-                                states: {
-                                    hover: {
-                                        color: '#3b729f'
-                                    }
-                                },
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.name}'
-                                }
-                            }, {
-                                // Bubble series
-                                type: 'mapbubble',
-                                name: 'Potensi tsunami',
-                                joinBy: ['hc-key', 'code'],
-                                data: [
-                                    { code: 'id-ac', z: 200 },
-                                    { code: 'id-jt', z: 300 },
-                                    { code: 'id-be', z: 400 },
-                                    { code: 'id-bt', z: 500 },
-                                    { code: 'id-kb', z: 600 },
-                                    { code: 'id-bb', z: 700 },
-                                    { code: 'id-ba', z: 800 },
-                                    { code: 'id-ji', z: 900 },
-                                    { code: 'id-ks', z: 1000 }
-                                ],
-                                minSize: 4,
-                                maxSize: '12%',
-                                tooltip: {
-                                    pointFormat: '{point.code}: {point.z} thousands'
-                                },
-                            }]
-                        });
-
-                    })();
-                </script>
-                <!-- Data Tables and Graphs -->
-                <div class="grid grid-cols-2 gap-6">
-                    <!-- Latest Tsunami Data -->
-                    <div class="bg-white rounded-lg shadow p-4">
-                        <h2 class="font-semibold text-lg mb-4">Tsunami Terbaru</h2>
-                        <ul>
-                            <li>M 7.2 - 02-03-2021 - 07:30:30 WIB - 12 km Enggano - Bengkulu</li>
-                            <li>M 5.1 - 01-03-2021 - 08:15:30 WIB - 11 km Sumur - Banten</li>
-                            <li>M 4.7 - 28-02-2021 - 06:45:20 WIB - 15 km Toli Toli - Sulawesi Tengah</li>
-                            <li>M 4.8 - 27-02-2021 - 10:15:10 WIB - 18 km Jayapura - Papua</li>
-                        </ul>
-                    </div>
-
-                    <!-- Earthquake Graph -->
-                    <div class="bg-white rounded-lg shadow p-4">
-                        <h2 class="font-semibold text-lg mb-4">Jumlah korban jiwa</h2>
-                        <div class="relative">
-                            <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">
-                                            32.4k</h5>
-                                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Korban this
-                                            decade</p>
-                                    </div>
-                                    <div
-                                        class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                                        12%
-                                        <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 10 14">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div id="area-chart"></div>
+                })();
+            </script>
+            <!-- Data Tables and Graphs -->
+            <div class="grid grid-cols-2 gap-6">
+                <!-- Latest Tsunami Data -->
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h2 class="font-semibold text-lg mb-4">Tsunami Terbaru</h2>
+                    <div class="flex flex-col">
+                        <div class="-m-1.5 overflow-x-auto">
+                            <div class="p-1.5 min-w-full inline-block align-middle">
                                 <div
-                                    class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                                    <div class="flex justify-between items-center pt-5">
-                                        <!-- Button -->
-                                        <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
-                                            data-dropdown-placement="bottom"
-                                            class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                                            type="button">
-                                            Last 10 years
-                                            <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="lastDaysdropdown"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                aria-labelledby="dropdownDefaultButton">
-                                                <li>
-                                                    <a href="#"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                                        7
-                                                        days</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                                        30
-                                                        days</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                                        90
-                                                        days</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a href="#"
-                                            class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                                            Users Report
-                                            <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                                            </svg>
-                                        </a>
-                                    </div>
+                                    class="border rounded-lg shadow overflow-hidden dark:border-neutral-700 dark:shadow-gray-900">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                    Waktu kejadian</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                    Lokasi kejadian</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                    Elevasi gelombang</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                    Penyebab</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200">
+                                            <?php if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) { ?>
+                                            <tr>
+                                                <td
+                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                    <?php echo $row['Waktu_kejadian'] ?></td>
+                                                <td
+                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                    <?php echo $row['Lokasi_KabKota'] ?></td>
+                                                <td
+                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                    <?php echo $row['Elevasi_gelombang_tsunami_m'] ?></td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                                <?php echo $row['Sebab_tsunami'] ?>
+                                                </td>
+                                            </tr>
+                                            <?php }
+                                            } ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <!-- Placeholder for graph -->
+                <!-- Tsunami Graph -->
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h2 class="font-semibold text-lg mb-4">Jumlah kejadian tsunami di Indonesia</h2>
+                    <div class="relative">
+                        <!-- <div class=" w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"> -->
+                        <div class="flex justify-between">
+                            <div>
+                                <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">
+                                    <?php
+                                    // Example data for the sum series
+                                    $tsunami_data = [
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        4,
+                                        1,
+                                        5,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        3,
+                                        3,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        2,
+                                        2,
+                                        1,
+                                        1,
+                                        2,
+                                        1,
+                                        1,
+                                        1,
+                                        5,
+                                        1,
+                                        2,
+                                        1,
+                                        3,
+                                        2,
+                                        2,
+                                        1,
+                                        2,
+                                        6,
+                                        2,
+                                        2,
+                                        1,
+                                        1,
+                                        5,
+                                        1,
+                                        2,
+                                        2
+                                    ];
+
+                                    // Calculate the sum of the series
+                                    $sum_series = array_sum($tsunami_data);
+
+                                    // Output the sum
+                                    echo $sum_series;
+                                    ?>
+                                </h5>
+                                <p class="text-base font-normal text-gray-500 dark:text-gray-400">Bencana tsunami
+                                </p>
+                            </div>
+                        </div>
+                        <div id="area-chart"></div>
+                        <div
+                            class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                            <div class="flex justify-between items-center pt-5">
+                                <!-- Button -->
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
+                                    data-dropdown-placement="bottom"
+                                    class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                                    type="button">
+                                    Riwayat kejadian tsunami
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <script>
+                const options = {
+                    chart: {
+                        height: "100%",
+                        maxWidth: "100%",
+                        type: "area",
+                        fontFamily: "Inter, sans-serif",
+                        dropShadow: {
+                            enabled: false,
+                        },
+                        toolbar: {
+                            show: false,
+                        },
+                    },
+                    tooltip: {
+                        enabled: true,
+                        x: {
+                            show: false,
+                        },
+                    },
+                    fill: {
+                        type: "gradient",
+                        gradient: {
+                            opacityFrom: 0.55,
+                            opacityTo: 0,
+                            shade: "#1C64F2",
+                            gradientToColors: ["#1C64F2"],
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false,
+                    },
+                    stroke: {
+                        width: 6,
+                    },
+                    grid: {
+                        show: false,
+                        strokeDashArray: 4,
+                        padding: {
+                            left: 2,
+                            right: 2,
+                            top: 0
+                        },
+                    },
+                    series: [
+                        {
+                            name: "Kejadian Tsunami",
+                            data: [1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 4
+                                , 1
+                                , 5
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 3
+                                , 3
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 2
+                                , 2
+                                , 1
+                                , 1
+                                , 2
+                                , 1
+                                , 1
+                                , 1
+                                , 5
+                                , 1
+                                , 2
+                                , 1
+                                , 3
+                                , 2
+                                , 2
+                                , 1
+                                , 2
+                                , 6
+                                , 2
+                                , 2
+                                , 1
+                                , 1
+                                , 5
+                                , 1
+                                , 2
+                                , 2], //diisi jumlah tsunami
+                            color: "#1A56DB",
+                        },
+                    ],
+                    xaxis: {
+                        categories: ["1608",
+                            "1629",
+                            "1673",
+                            "1674",
+                            "1708",
+                            "1710",
+                            "1711",
+                            "1754",
+                            "1763",
+                            "1770",
+                            "1775",
+                            "1797",
+                            "1815",
+                            "1818",
+                            "1820",
+                            "1833",
+                            "1841",
+                            "1843",
+                            "1845",
+                            "1846",
+                            "1851",
+                            "1852",
+                            "1854",
+                            "1855",
+                            "1856",
+                            "1857",
+                            "1859",
+                            "1860",
+                            "1861",
+                            "1864",
+                            "1871",
+                            "1876",
+                            "1882",
+                            "1883",
+                            "1885",
+                            "1889",
+                            "1891",
+                            "1892",
+                            "1899",
+                            "1900",
+                            "1907",
+                            "1908",
+                            "1914",
+                            "1917",
+                            "1921",
+                            "1927",
+                            "1928",
+                            "1930",
+                            "1931",
+                            "1936",
+                            "1938",
+                            "1939",
+                            "1948",
+                            "1950",
+                            "1957",
+                            "1964",
+                            "1965",
+                            "1967",
+                            "1968",
+                            "1969",
+                            "1977",
+                            "1979",
+                            "1981",
+                            "1983",
+                            "1992",
+                            "1994",
+                            "1995",
+                            "1996",
+                            "2000",
+                            "2004",
+                            "2005",
+                            "2006",
+                            "2007",
+                            "2008",
+                            "2009",
+                            "2010",
+                            "2012",
+                            "2014",
+                            "2016",
+                            "2018",
+                            "2019",
+                            "2021",
+                            "2023"], // diisi range waktu tsunami
+                        labels: {
+                            show: false,
+                        },
+                        axisBorder: {
+                            show: false,
+                        },
+                        axisTicks: {
+                            show: false,
+                        },
+                    },
+                    yaxis: {
+                        show: false,
+                    },
+                }
+
+                if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
+                    const chart = new ApexCharts(document.getElementById("area-chart"), options);
+                    chart.render();
+                }
+            </script>
+            <!-- Placeholder for graph -->
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
     <script>
         const sidebar = document.querySelector("aside");
@@ -417,6 +797,8 @@
 
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>

@@ -9,7 +9,18 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
+//untuk ambil data di db
 $sql = "SELECT * FROM orang_hilang";
+$result = $conn->query($sql);
+
+//untuk searching
+if (isset($_GET['cari']) && !empty($_GET['search'])) {
+    $search = $conn->real_escape_string($_GET["search"]);
+    $sql = "SELECT * FROM orang_hilang WHERE nama_orang LIKE '%$search%' OR nama_bencana LIKE '%$search%'";
+} else {
+    $sql = "SELECT * FROM orang_hilang";
+}
+
 $result = $conn->query($sql);
 ?>
 
@@ -43,6 +54,7 @@ $result = $conn->query($sql);
             color: gray;
         }
 
+        /**untuk button input data */
         .btn-input-data button {
             background-color: #e5e7eb;
             color: transparent;
@@ -61,6 +73,45 @@ $result = $conn->query($sql);
 
         .btn-input-data button:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /**buat modal di foto */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 80%;
+            text-align: center;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -185,6 +236,19 @@ $result = $conn->query($sql);
                     </div>
                 </button>
             </a>
+            <a href="berita.php">
+                <button href="data.php"
+                    class="hover:ml-4 w-full text-white hover:bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                    </svg>
+                    <div>
+                        Berita
+                    </div>
+                </button>
+            </a>
         </div>
         <!-- MINI SIDEBAR-->
         <div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
@@ -210,6 +274,14 @@ $result = $conn->query($sql);
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </svg>
+            </a>
+            <a href="berita.php"
+                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
                 </svg>
             </a>
         </div>
@@ -241,131 +313,92 @@ $result = $conn->query($sql);
                         </button>
                     </a>
                 </div>
-
                 <div class="ml-3">
-                    <div class="w-full max-w-sm min-w-[200px] relative">
-                        <div class="relative">
-                            <select class="outline-none focus:outline-none p-2 bg-white rounded-3xl"
-                                value={selectedValue} onChange={handleSelectChange}>
-                                {genre.map((item, i) => (
-                                <option value={item} key={i}>
-                                    Select Category
-                                </option>
-                                <option value={item} key={i}>
-                                    Sci-fi
-                                </option>
-                                <option value={item} key={i}>
-                                    Drama
-                                </option>
-                                <option value={item} key={i}>
-                                    Thriller
-                                </option>
-                                <option value={item} key={i}>
-                                    Documentary
-                                </option>
-                                ))}
-                            </select>
-
+                    <div class="flex items-center space-x-2">
+                        <div class="w-full max-w-sm relative">
+                            <form action="" method="GET">
+                                <input
+                                    class="bg-white w-full pr-11 h-10 pl-3 py-2 placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded transition duration-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
+                                    placeholder="Cari.." type="search" name="search" id="search" autocomplete="off" />
+                                <button
+                                    class="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center bg-white rounded"
+                                    type="submit" name="cari" id="cari">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="3" stroke="currentColor" class="w-8 h-8 text-slate-600">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
-                        <input
-                            class="bg-white w-full pr-11 h-10 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded transition duration-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
-                            placeholder="Cari nama orang..." />
-                        <button class="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center bg-white rounded "
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
-                                stroke="currentColor" class="w-8 h-8 text-slate-600">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div
-            class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-            <table class="w-full text-left table-auto min-w-max">
-                <thead>
-                    <tr>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Kode Profil
-                            </p>
-                        </th>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Nama Orang
-                            </p>
-                        </th>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Nama Bencana
-                            </p>
-                        </th>
-                        <th class="p-4 border-b border-slate-200 bg-slate-50">
-                            <p class="text-sm font-normal leading-none text-slate-500">
-                                Foto
-                            </p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($result->num_rows > 0) { ?>
-                        <?php while ($row = $result->fetch_assoc()) { ?>
-                            <tr class="hover:bg-slate-50 border-b border-slate-200">
-                                <td class="p-4 py-5">
-                                    <p class="block font-semibold text-sm text-slate-800">
-                                        <?php echo $row["kode_profil"] ?>
-                                    </p>
-                                </td>
-                                <td class="p-4 py-5">
-                                    <p class="block font-semibold text-sm text-slate-800">
-                                        <?php echo $row["nama_orang"] ?>
-                                    </p>
-                                </td>
-                                <td class="p-4 py-5">
-                                    <p class="block font-semibold text-sm text-slate-800">
-                                        <?php echo $row["nama_bencana"] ?>
-                                    </p>
-                                </td>
-                            </tr>
-                        <?php }
-                    } else {
-                        echo "Tidak ada data";
-                    } ?>
-                </tbody>
-            </table>
+            <div
+                class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+                <table class="w-full text-left table-auto min-w-max">
+                    <thead>
+                        <tr>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Kode Profil
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Nama Orang
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Nama Bencana
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Foto
+                                </p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($result->num_rows > 0) { ?>
+                            <?php $counter = 1 ?>
+                            <?php while ($row = $result->fetch_assoc()) { ?>
+                                <tr class="hover:bg-slate-50 border-b border-slate-200">
+                                    <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["kode_profil"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["nama_orang"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["nama_bencana"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
+                                        <?php $foto = base64_encode($row['foto']); ?>
+                                        <button onclick="openModal('data:image/jpeg;base64,<?php echo $foto; ?>')"
+                                            class="text-blue-500 underline">
+                                            Lihat Foto
+                                        </button>
+                                    </td>
 
-            <div class="flex justify-between items-center px-4 py-3">
-                <div class="text-sm text-slate-500">
-                    Showing <b>1-5</b> of 45
-                </div>
-                <div class="flex space-x-1">
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        Prev
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
-                        1
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        2
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        3
-                    </button>
-                    <button
-                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
-                        Next
-                    </button>
-                </div>
+                                </tr>
+                            <?php }
+                        } else {
+                            echo "Tidak ada data";
+                        } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
     </div>
 
     <script>
@@ -410,6 +443,31 @@ $result = $conn->query($sql);
         }
     </script>
 
+    <!-- buat modal di foto -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Photo">
+        </div>
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            document.getElementById("modalImage").src = imageSrc;
+            document.getElementById("photoModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("photoModal").style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            var modal = document.getElementById("photoModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
     <?php $conn->close(); ?>
 </body>
 
