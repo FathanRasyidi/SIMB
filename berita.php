@@ -36,6 +36,19 @@
         .container::-webkit-scrollbar {
             display: none;
         }
+
+        .content {
+            min-height: calc(100vh - 6rem);
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 
@@ -214,132 +227,122 @@
     </aside>
     <!-- Isian -->
 
-
-    <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 flex-col">
+    <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4">
         <!-- berita -->
 
         <!-- Berita atas -->
-        <div class="container flex space-x-4 py-4 flex-nowrap">
+        <div class="container flex space-x-4 py-4 flex-nowrap mb-4">
             <div
                 class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
-                <a href="#">
+                <a href="berita-detail.php?id=1">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita1.jpg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h6 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-                            style="font-size: 22px;">Tsunami Aceh, Bencana Alam Terbesar & Memori Kelam Tahun 2004</h6>
-                    </a>
-                </div>
+                            style="font-size: 22px;">Tsunami Aceh, Bencana Alam Terbesar & Memori Kelam Tahun 2004
+                        </h6>
+                    </div>
+                </a>
             </div>
 
             <div
                 class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
-                <a href="#">
+                <a href="berita-detail.php?id=2">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita3.jpg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                             style="font-size: 22px;">Tsunami dan Gempa Palu Donggala 2018 dalam Angka: Korban, Daya
                             Rusak, dan Lainnya</h5>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
 
             <div
                 class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
-                <a href="#">
+                <a href="berita-detail.php?id=3">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita4.jpg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                             style="font-size: 22px;">BMKG Ungkap Kronologi Tsunami Selat Sunda 22 Desember 2018</h5>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
 
             <div
                 class="max-w-sm bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 flex-shrink-0">
-                <a href="#">
+                <a href="berita-detail.php?id=4">
                     <img class="rounded-t-lg h-48 w-full" src="asset/berita5.jpg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                             style="font-size: 22px;">10 Tsunami Terdahsyat di Dunia, 3 di Indonesia</h5>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
 
 
         <!-- Berita Bawah -->
-        <div class="grid grid-cols-4 grid-rows-4 gap-4">
+        <div class="grid grid-cols-4 gap-4">
             <div
                 class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-2 row-span-2">
-                <a href="#">
+                <a href="berita-detail.php?id=5">
                     <img class="rounded-t-lg h-55" src="asset/ber6.webp" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h4 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white "
                             style="font-size: 28px;">Daftar Wilayah Berpotensi Terdampak Tsunami Gempa Megathrust, BRIN:
                             Gelombang Bisa sampai Jakarta</h4>
-                    </a>
-                </div>
+                        <p class="text-justify mt-4">Badan Riset dan Inovasi Nasional (BRIN) mengungkapkan bahwa
+                            gelombang tsunami
+                            dapat muncul sebagai dampak dari gempa megathrust di Selat Sunda dan Mentawai-Siberut.
+                            Bahkan, tsunami tersebut diperkirakan bisa mencapai Jakarta.
+
+                            Peneliti BRIN, Danny Hilman Natawidjaja, menjelaskan bahwa tsunami dapat mencapai Jakarta
+                            jika gempa akibat megathrust Selat Sunda memiliki magnitudo hingga M 9.
+
+                            “Magnitudo minimalnya sekitar 8 dan maksimalnya bisa mencapai 9. Jika terjadi, apalagi
+                            hingga mencapai M 9, guncangannya akan sangat keras dan tsunaminya bisa sangat besar,” kata
+                            Danny kepada Kompas.com pada Selasa (20/8/2024).</p>
+                    </div>
+                </a>
             </div>
             <div
                 class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
-                <a href="#">
+                <a href="berita-detail.php?id=6">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita7.jpeg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Pembangunan Aceh
                             Setelah 20 Tahun Berlalu Pasca Tsunami</h5>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
             <div
                 class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
-                <a href="#">
+                <a href="berita-detail.php?id=7">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita8.jpg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Indonesia Rujukan
                             Global Pengembangan Sistem Peringatan Dini Tsunami</h5>
-                    </a>
-                </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Launch demo modal
-                </button>
+                    </div>
+                </a>
             </div>
             <div
                 class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
-                <a href="#">
+                <a href="berita-detail.php?id=8">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita9.jpeg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Tak Bisa Diprediksi,
                             Yang Terpenting Adalah Mitigasi Bencana Gempa Bumi dan Tsunami</h5>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
             <div
                 class="bg-white border-2 border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600 col-span-1 row-span-1">
-                <a href="#">
+                <a href="berita-detail.php?id=9">
                     <img class="rounded-t-lg h-40 w-full" src="asset/berita10.jpg" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
+                    <div class="p-5">
                         <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Tanggap Bencana, BPBD
                             Bantul Gelar Simulasi Penanggulangan Tsunami</h5>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
             <!-- Berita bawah end -->
         </div>
