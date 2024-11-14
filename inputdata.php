@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsunami Warning Dashboard</title>
+    <title>Input Data Orang Hilang</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
     <link rel="stylesheet" href="font/stylesheet.css">
     <style>
         body {
@@ -63,6 +64,51 @@
                     <div style="font-size: 10px; line-height: 1;">Detik</div>
                     <div id="detik" class="text-center" style="font-size: 25px; line-height: 1; width: 20px"></div>
                 </div>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Input Data Orang Hilang</title>
+                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+                </head>
+                <?php
+                // Koneksi ke database
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "tsunami";
+
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Cek koneksi
+                if ($conn->connect_error) {
+                    die("Koneksi gagal: " . $conn->connect_error);
+                }
+
+                // Proses form saat submit
+                if (isset($_POST['submit'])) {
+                    $nama_orang = $_POST['nama_orang'];
+                    $nama_bencana = $_POST['nama_bencana'];
+
+                    // Upload foto
+                    $foto = $_FILES['foto']['name'];
+                    $target_dir = "uploads/";
+                    $target_file = $target_dir . basename($foto);
+
+                    // Simpan file ke folder uploads
+                    if (move_uploaded_file($_FILES['foto']['tmp_name'], $target_file)) {
+                        $sql = "INSERT INTO orang_hilang (nama_orang, nama_bencana, foto) VALUES ('$nama_orang', '$nama_bencana', '$foto')";
+
+                        if ($conn->query($sql) === TRUE) {
+                            echo "<p class='text-green-500'>Data berhasil disimpan.</p>";
+                        } else {
+                            echo "<p class='text-red-500'>Error: " . $sql . "<br>" . $conn->error . "</p>";
+                        }
+                    } else {
+                        echo "<p class='text-red-500'>Gagal mengunggah foto.</p>";
+                    }
+                }
+
+                $conn->close();
+                ?>
                 <script>
                     function startTime() {
                         const today = new Date();
@@ -181,7 +227,8 @@
     </aside>
     <!-- Isian -->
     <div class="bg-[#eef0f2] content ml-12 transform ease-in-out duration-500 pt-24 px-2 md:px-5 pb-4 ">
-        isi apa ini guys
+    </div>
+
     </div>
 
     <script>
