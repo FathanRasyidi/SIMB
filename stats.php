@@ -339,7 +339,6 @@
                         <!-- <div class=" w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"> -->
                         <div class="flex justify-between">
                             <div>
-<<<<<<< HEAD
                                 <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">
                                 <?php
                                 // Example data for the sum series
@@ -372,7 +371,6 @@
 
                             </div>
                         </div>
-=======
                                 <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">32.4k
                                 </h5>
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Korban jiwa
@@ -419,7 +417,6 @@
                                 </div>
                             </div>
                         </div>
->>>>>>> 2ff71fa32e57b201e0db55d5671a6293789425b4
                     </div>
                     <script>
                         const options = {
@@ -467,7 +464,6 @@
                             },
                             series: [
                                 {
-<<<<<<< HEAD
                                     name: "Kejadian Tsunami",
                                     data: [1
                                         , 1
@@ -552,15 +548,10 @@
                                         , 1
                                         , 2
                                         , 2], //diisi jumlah tsunami
-=======
-                                    name: "Korban Jiwa",
-                                    data: [6500, 6418, 6456, 6526, 6356, 6456], //diisi jumlah tsunami
->>>>>>> 2ff71fa32e57b201e0db55d5671a6293789425b4
                                     color: "#1A56DB",
                                 },
                             ],
                             xaxis: {
-<<<<<<< HEAD
                                 categories: ["1608",
                                     "1629",
                                     "1673",
@@ -644,9 +635,6 @@
                                     "2019",
                                     "2021",
                                     "2023"], // diisi range waktu tsunami
-=======
-                                categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'], // diisi range waktu tsunami
->>>>>>> 2ff71fa32e57b201e0db55d5671a6293789425b4
                                 labels: {
                                     show: false,
                                 },
