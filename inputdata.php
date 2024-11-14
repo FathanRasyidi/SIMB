@@ -1,3 +1,35 @@
+<?php
+$conn = mysqli_connect("localhost", "root", "", "tsunami");
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nama_orang = $_POST['nama_orang'];
+    $nama_bencana = $_POST['nama_bencana'];
+    $foto = $_FILES['foto']['tmp_name'];
+
+    $fotoContent = addslashes(file_get_contents($foto));
+
+
+    $sql = "INSERT INTO orang_hilang (nama_orang, nama_bencana, foto) VALUES ('$nama_orang', '$nama_bencana', '$fotoContent')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "
+            <script>
+            alert('Data orang hilang berhasil ditambahkan!');
+            document.location.href='data.php';
+            </script>
+        ";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+$conn->close();
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -5,7 +37,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsunami Warning Dashboard</title>
+    <title>Input Data Orang Hilang</title>
+    <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="font/stylesheet.css">
     <style>
