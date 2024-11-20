@@ -166,7 +166,9 @@ $result = $conn->query($sql);
                     }
 
                     function checkTime(i) {
-                        if (i < 10) { i = "0" + i };
+                        if (i < 10) {
+                            i = "0" + i
+                        };
                         return i;
                     }
                 </script>
@@ -336,118 +338,79 @@ $result = $conn->query($sql);
                 </div>
             </div>
 
-            <div
-                class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-                <table class="w-full text-left table-auto min-w-max">
-                    <thead>
-                        <tr>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Tanggal Hilang
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Nama Orang
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Nama Bencana
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Berat Badan
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Tinggi Badan
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Usia
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Kontak
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Alamat
-                                </p>
-                            </th>
-                            <th class="p-4 border-b border-slate-200 bg-slate-50">
-                                <p class="text-sm font-normal leading-none text-slate-500">
-                                    Foto
-                                </p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if ($result->num_rows > 0) { ?>
-                            <?php $counter = 1 ?>
-                            <?php while ($row = $result->fetch_assoc()) { ?>
-                                <tr class="hover:bg-slate-50 border-b border-slate-200">
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["tanggal"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["nama_orang"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["nama_bencana"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["berat"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["tinggi"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["usia"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["kontak"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["alamat"] ?>
-                                        </p>
-                                    </td>
-                                    <td class="p-4 py-5">
-                                        <?php $foto = base64_encode($row['foto']); ?>
-                                        <button onclick="openModal('data:image/jpeg;base64,<?php echo $foto; ?>')"
-                                            class="text-blue-500 underline">
-                                            Lihat Foto
-                                        </button>
-                                    </td>
-                                </tr>
-                            <?php }
-                        } else {
-                            echo "Tidak ada data";
-                        } ?>
-                    </tbody>
-                </table>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
+                <?php if ($result->num_rows > 0) { ?>
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                        <div class="bg-white rounded-xl border-2 border-gray-300 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] 
+                        hover:shadow-[rgba(0,_0,_0,_0.2)_0px_10px_20px] transition-all duration-300 ease-in-out">
+                            <div class="relative h-48 bg-gray-200 border-b-2 border-gray-300">
+                                <?php $foto = base64_encode($row['foto']); ?>
+                                <img src="data:image/jpeg;base64,<?php echo $foto; ?>"
+                                    class="w-full h-full object-cover"
+                                    alt="Foto Orang Hilang">
+                            </div>
+
+                            <div class="p-4 space-y-4">
+
+
+
+                                <div class="space-y-2">
+                                    <h3 class="text-lg font-bold text-gray-800"><?php echo $row["nama_orang"] ?></h3>
+                                    <?php if ($row["status"] == "ditemukan") { ?>
+                                        <span class="inline-block bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full border-2 border-green-200">
+                                            Ditemukan
+                                        </span>
+                                    <?php } else { ?>
+                                        <span class="inline-block bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded-full border-2 border-red-200">
+                                            Belum Ditemukan
+                                        </span>
+                                    <?php } ?>
+                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full border-2 border-blue-200">
+                                        <?php echo $row["nama_bencana"] ?>
+                                    </span>
+                                </div>
+
+
+
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-sm space-x-2">
+                                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <span class="text-gray-600">Tanggal Hilang : <?php echo $row["tanggal"] ?></span>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-3 text-sm">
+                                        <div class="text-gray-600 border-r-2 border-gray-300">
+                                            <span class="font-semibold">Usia:</span> <?php echo $row["usia"] ?> th
+                                        </div>
+                                        <div class="text-gray-600 border-r-2 border-gray-300">
+                                            <span class="font-semibold">BB:</span> <?php echo $row["berat"] ?> kg
+                                        </div>
+                                        <div class="text-gray-600">
+                                            <span class="font-semibold">TB:</span> <?php echo $row["tinggi"] ?> cm
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center text-sm space-x-2 pt-2 border-t-2 border-gray-300">
+                                        <span class="font-semibold text-gray-600">Alamat:</span>
+                                        <p class="text-gray-600 truncate"><?php echo $row["alamat"] ?></p>
+                                    </div>
+
+                                    <div class="flex items-center text-sm space-x-2 pt-2 border-t-2 border-gray-300">
+                                        <span class="font-semibold text-gray-600">Kontak:</span>
+                                        <p class="text-gray-600 truncate"><?php echo $row["kontak"] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                <?php } else { ?>
+                    <div class="col-span-full text-center py-10 text-gray-500">
+                        Tidak ada data
+                    </div>
+                <?php } ?>
             </div>
+
         </div>
     </div>
 
@@ -511,7 +474,7 @@ $result = $conn->query($sql);
             document.getElementById("photoModal").style.display = "none";
         }
 
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             var modal = document.getElementById("photoModal");
             if (event.target == modal) {
                 closeModal();
