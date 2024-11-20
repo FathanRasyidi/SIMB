@@ -56,23 +56,24 @@ $result = $conn->query($sql);
 
         /**untuk button input data */
         .btn-input-data button {
-            background-color: #e5e7eb;
-            color: transparent;
-            font-weight: bold;
+            background-color: #000;
+            color: black;
+            font-weight: light;
             background-clip: text;
             -webkit-background-clip: text;
-            background-image: linear-gradient(to right, #3b82f6, #9333ea);
+            background-image: none;
             padding: 4px 12px;
             border: 1px solid #d1d5db;
             transition: all 0.3s ease-in-out;
         }
 
         .icon-color {
-            stroke: #3b82f6;
+            stroke: #000;
         }
 
         .btn-input-data button:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #333;
         }
 
         /**buat modal di foto */
