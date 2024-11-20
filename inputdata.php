@@ -8,12 +8,18 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama_orang = $_POST['nama_orang'];
     $nama_bencana = $_POST['nama_bencana'];
+    $berat = $_POST['berat'];
+    $tinggi = $_POST['tinggi'];
+    $usia = $_POST['usia'];
+    $kontak = $_POST['kontak'];
+    $alamat = $_POST['alamat'];
+    $tanggal = $_POST['tanggal'];
     $foto = $_FILES['foto']['tmp_name'];
 
     $fotoContent = addslashes(file_get_contents($foto));
 
 
-    $sql = "INSERT INTO orang_hilang (nama_orang, nama_bencana, foto) VALUES ('$nama_orang', '$nama_bencana', '$fotoContent')";
+    $sql = "INSERT INTO orang_hilang (nama_orang, nama_bencana, berat, tinggi, usia, kontak, alamat, tanggal, foto) VALUES ('$nama_orang', '$nama_bencana', '$berat', '$tinggi' , '$usia' , '$kontak' , '$alamat', '$tanggal' , '$fotoContent')";
 
     if ($conn->query($sql) === TRUE) {
         echo "
@@ -238,32 +244,72 @@ $conn->close();
     </aside>
     <!-- Isian -->
     <div class="flex justify-center items-center min-h-screen bg-[#eef0f2] px-4">
-        <div id="form-container" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <div class="text-center p-5">
-                <h2 class="text-3xl font-bold mb-6 text-gray-800">Input Data Orang Hilang</h2>
+        <div id="form-container" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl"> <!-- Mengubah max-w-md menjadi max-w-3xl -->
+            <!-- Judul -->
+            <br>
+            <br>
+            <div class="text-center mb-8 mt-10">
+                <h2 class="text-2xl font-bold text-gray-800">INPUT DATA ORANG HILANG</h2>
             </div>
+
             <form action="inputdata.php" method="post" enctype="multipart/form-data">
-                <div class="mb-6">
-                    <label for="nama_orang" class="block text-gray-700 font-semibold mb-2">Nama Orang:</label>
-                    <input type="text" id="nama_orang" name="nama_orang"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
+                <div style="display: grid; grid-template-columns: 150px 1fr 150px 1fr; gap: 16px; align-items: center; max-width: 800px; margin: auto;">
+
+                    <!-- Nama Lengkap -->
+                    <label for="nama_orang" class="w-36 text-gray-700 font-semibold">Nama Lengkap:</label>
+                    <input type="text" id="nama_orang" name="nama_orang" placeholder="Masukkan Nama Lengkap"
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+
+                    <!-- Nama Bencana -->
+                    <label for="nama_bencana" class="w-36 text-gray-700 font-semibold">Nama Bencana:</label>
+                    <input type="text" id="nama_bencana" name="nama_bencana" placeholder="Masukkan Nama Bencana"
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+
+                    <!-- Berat -->
+                    <label for="berat" class="text-gray-700 font-semibold">Berat:</label>
+                    <input type="number" id="berat" name="berat" placeholder="Berat Badan"
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+
+                    <!-- Tinggi -->
+                    <label for="tinggi" class="text-gray-700 font-semibold">Tinggi:</label>
+                    <input type="number" id="tinggi" name="tinggi" placeholder="Tinggi Badan"
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+
+                    <!-- Tanggal Hilang -->
+                    <label for="tanggal" class="text-gray-700 font-semibold">Tanggal Hilang:</label>
+                    <input type="date" id="tanggal" name="tanggal"
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+
+                    <!-- Usia -->
+                    <label for="usia" class="text-gray-700 font-semibold">Usia:</label>
+                    <input type="number" id="usia" name="usia" placeholder="Masukkan usia"
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+
+                    <!-- Alamat -->
+                    <label for="alamat" class="w-36 text-gray-700 font-semibold">Alamat:</label>
+                    <input type="text" id="alamat" name="alamat" placeholder="Masukkan Alamat"
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+
+                    <!-- Nomor Telepon -->
+                    <label for="kontak" class="w-36 text-gray-700 font-semibold">Nomor Telepon:</label>
+                    <input type="number" id="kontak" name="kontak" placeholder="Nomor yang dapat dihubungi"
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+
+                    <!-- foto -->
+                    <label for="kontak" class="w-36 text-gray-700 font-semibold">Foto :</label>
+                    <input type="file" name="foto"
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+
+                    <!-- Submit Button -->
+                    <div style="grid-column: span 4; text-align: center; margin-top: 20px;">
+                        <button type="submit" name="submit"
+                            class="w-full p-3 rounded-lg text-white font-semibold bg-blue-500 hover:bg-blue-600">
+                            Submit
+                        </button>
+                    </div>
                 </div>
-                <div class="mb-6">
-                    <label for="nama_bencana" class="block text-gray-700 font-semibold mb-2">Nama Bencana:</label>
-                    <input type="text" id="nama_bencana" name="nama_bencana"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
-                </div>
-                <div class="mb-6">
-                    <label for="foto" class="block text-gray-700 font-semibold mb-2">Foto:</label>
-                    <input type="file" id="foto" name="foto"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
-                </div>
-                <button type="submit" name="submit" class="w-full p-3 rounded-lg text-white font-semibold"
-                    style="background-color: #007BFF;">Submit</button>
             </form>
+
         </div>
     </div>
 

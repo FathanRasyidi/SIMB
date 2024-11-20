@@ -342,7 +342,7 @@ $result = $conn->query($sql);
                         <tr>
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
                                 <p class="text-sm font-normal leading-none text-slate-500">
-                                    Kode Profil
+                                    Tanggal Hilang
                                 </p>
                             </th>
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
@@ -353,6 +353,31 @@ $result = $conn->query($sql);
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
                                 <p class="text-sm font-normal leading-none text-slate-500">
                                     Nama Bencana
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Berat Badan
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Tinggi Badan
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Usia
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Kontak
+                                </p>
+                            </th>
+                            <th class="p-4 border-b border-slate-200 bg-slate-50">
+                                <p class="text-sm font-normal leading-none text-slate-500">
+                                    Alamat
                                 </p>
                             </th>
                             <th class="p-4 border-b border-slate-200 bg-slate-50">
@@ -369,7 +394,7 @@ $result = $conn->query($sql);
                                 <tr class="hover:bg-slate-50 border-b border-slate-200">
                                     <td class="p-4 py-5">
                                         <p class="block font-semibold text-sm text-slate-800">
-                                            <?php echo $row["kode_profil"] ?>
+                                            <?php echo $row["tanggal"] ?>
                                         </p>
                                     </td>
                                     <td class="p-4 py-5">
@@ -383,13 +408,37 @@ $result = $conn->query($sql);
                                         </p>
                                     </td>
                                     <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["berat"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["tinggi"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["usia"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["kontak"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
+                                        <p class="block font-semibold text-sm text-slate-800">
+                                            <?php echo $row["alamat"] ?>
+                                        </p>
+                                    </td>
+                                    <td class="p-4 py-5">
                                         <?php $foto = base64_encode($row['foto']); ?>
                                         <button onclick="openModal('data:image/jpeg;base64,<?php echo $foto; ?>')"
                                             class="text-blue-500 underline">
                                             Lihat Foto
                                         </button>
                                     </td>
-
                                 </tr>
                             <?php }
                         } else {
