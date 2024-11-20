@@ -5,6 +5,10 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
+//untuk header
+$sql2 = "SELECT * FROM data_tsunami ORDER BY id DESC";
+$result2 = $conn->query($sql2);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama_orang = $_POST['nama_orang'];
     $nama_bencana = $_POST['nama_bencana'];
@@ -80,14 +84,21 @@ $conn->close();
         <!-- Kanan -->
         <div class="grow h-full flex items-center justify-end">
             <div class="flex items-center justify-end space-x-2">
-                <div class="text-black bg-black bg-opacity-5 font-bold py-1 px-3 rounded-xl">
+            <div class="text-black bg-black bg-opacity-5 font-bold py-1 px-3 rounded-xl">
                     <div class="text-red-500 text-sm">PERINGATAN TSUNAMI!</div>
                     <div class="flex items-center space-x-1">
-                        <div class="font-bold text-normal mr-1">M 7.6</div>
                         <div>
-                            <div class="text-gray-600 text-xs">02-03-2021, 07:30:30 WIB</div>
-                            <div class="text-gray-600 text-xs">12 km <span class="text-blue-500">LOMBOK -
-                                    BENGKULU</span></div>
+                        <?php
+                        if ($result2->num_rows > 0) {
+                            $latestTsunami = $result2->fetch_assoc();
+                            echo '<div class="text-gray-600 text-xs">' . strtoupper($latestTsunami["Sebab_tsunami"]) .' - ' . strtoupper($latestTsunami['Waktu_kejadian']) . '</div>';
+                            echo '<div class="text-gray-600 text-xs">';
+                            if ($latestTsunami['Elevasi_gelombang_tsunami_m'] != NULL) {
+                                echo 'ELEVASI : ' .$latestTsunami['Elevasi_gelombang_tsunami_m'] . ", ";
+                            }
+                            echo '<span class="text-blue-500">' . strtoupper($latestTsunami['Lokasi_Provinsi']) . ' - ' . strtoupper($latestTsunami['Lokasi_KabKota']) .'</span></div>';
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>
@@ -180,7 +191,7 @@ $conn->close();
                 </button> </a>
             <a href="data.php">
                 <button href="data.php"
-                    class="hover:ml-4 w-full text-white hover:bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                    class="hover:ml-4 w-full text-white bg-blue-600 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -224,7 +235,7 @@ $conn->close();
                 </svg>
             </a>
             <a href="data.php"
-                class="justify-end pr-4 ml-1 text-white hover:bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
+                class="justify-end pr-4 ml-1 text-white bg-blue-700 p-3 rounded-full transform ease-in-out duration-300 flex">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -244,7 +255,7 @@ $conn->close();
     </aside>
     <!-- Isian -->
     <div class="flex justify-center items-center min-h-screen bg-[#eef0f2] px-4">
-        <div id="form-container" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl"> <!-- Mengubah max-w-md menjadi max-w-3xl -->
+        <div id="form-container" class="bg-white p-6 pt-0 rounded-lg w-full max-w-3xl"> <!-- Mengubah max-w-md menjadi max-w-3xl -->
             <!-- Judul -->
             <br>
             <br>
@@ -258,47 +269,47 @@ $conn->close();
                     <!-- Nama Lengkap -->
                     <label for="nama_orang" class="w-36 text-gray-700 font-semibold">Nama Lengkap:</label>
                     <input type="text" id="nama_orang" name="nama_orang" placeholder="Masukkan Nama Lengkap"
-                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required style="grid-column: span 3;">
 
                     <!-- Nama Bencana -->
                     <label for="nama_bencana" class="w-36 text-gray-700 font-semibold">Nama Bencana:</label>
                     <input type="text" id="nama_bencana" name="nama_bencana" placeholder="Masukkan Nama Bencana"
-                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required style="grid-column: span 3;">
 
                     <!-- Berat -->
                     <label for="berat" class="text-gray-700 font-semibold">Berat:</label>
                     <input type="number" id="berat" name="berat" placeholder="Berat Badan"
-                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required>
 
                     <!-- Tinggi -->
                     <label for="tinggi" class="text-gray-700 font-semibold">Tinggi:</label>
                     <input type="number" id="tinggi" name="tinggi" placeholder="Tinggi Badan"
-                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required>
 
                     <!-- Tanggal Hilang -->
                     <label for="tanggal" class="text-gray-700 font-semibold">Tanggal Hilang:</label>
                     <input type="date" id="tanggal" name="tanggal"
-                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required>
 
                     <!-- Usia -->
                     <label for="usia" class="text-gray-700 font-semibold">Usia:</label>
                     <input type="number" id="usia" name="usia" placeholder="Masukkan usia"
-                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required>
+                        class="w-[250px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required>
 
                     <!-- Alamat -->
                     <label for="alamat" class="w-36 text-gray-700 font-semibold">Alamat:</label>
                     <input type="text" id="alamat" name="alamat" placeholder="Masukkan Alamat"
-                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required style="grid-column: span 3;">
 
                     <!-- Nomor Telepon -->
                     <label for="kontak" class="w-36 text-gray-700 font-semibold">Nomor Telepon:</label>
                     <input type="number" id="kontak" name="kontak" placeholder="Nomor yang dapat dihubungi"
-                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required style="grid-column: span 3;">
 
                     <!-- foto -->
                     <label for="kontak" class="w-36 text-gray-700 font-semibold">Foto :</label>
                     <input type="file" name="foto"
-                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md bg-blue-50" required style="grid-column: span 3;">
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md" required style="grid-column: span 3;">
 
                     <!-- Submit Button -->
                     <div style="grid-column: span 4; text-align: center; margin-top: 20px;">

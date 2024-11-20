@@ -8,14 +8,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
+//untuk header
+$sql2 = "SELECT * FROM data_tsunami ORDER BY id DESC";
+$result2 = $conn->query($sql2);
 
 //untuk tabel
 $sql1 = "SELECT * FROM data_tsunami ORDER BY id DESC";
 $result1 = $conn->query($sql1);
-
-//untuk header
-$sql2 = "SELECT * FROM data_tsunami ORDER BY id DESC";
-$result2 = $conn->query($sql2);
 
 //untuk maps
 $sql = "SELECT * FROM data_tsunami";
@@ -298,7 +297,7 @@ $result = $conn->query($sql);
                 <div class="bg-white rounded-lg shadow p-4 border ">
                     <h2 class="font-semibold text-lg mb-4">Tsunami Terbaru</h2>
                     <div class="flex flex-col">
-                        <div class="-m-1.5 overflow-x-auto">
+                        <div class="-m-1.5 overflow-x-auto max-h-96">
                             <div class="p-1.5 min-w-full inline-block align-middle">
                                 <div
                                     class="border rounded-lg shadow overflow-hidden dark:border-neutral-700 dark:shadow-gray-900">

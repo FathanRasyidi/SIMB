@@ -1,3 +1,17 @@
+<?php 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tsunami";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+//untuk header
+$sql2 = "SELECT * FROM data_tsunami ORDER BY id DESC";
+$result2 = $conn->query($sql2);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,14 +83,21 @@
         <!-- Kanan -->
         <div class="grow h-full flex items-center justify-end">
             <div class="flex items-center justify-end space-x-2">
-                <div class="text-black bg-black bg-opacity-5 font-bold py-1 px-3 rounded-xl">
+            <div class="text-black bg-black bg-opacity-5 font-bold py-1 px-3 rounded-xl">
                     <div class="text-red-500 text-sm">PERINGATAN TSUNAMI!</div>
                     <div class="flex items-center space-x-1">
-                        <div class="font-bold text-normal mr-1">M 7.6</div>
                         <div>
-                            <div class="text-gray-600 text-xs">02-03-2021, 07:30:30 WIB</div>
-                            <div class="text-gray-600 text-xs">12 km <span class="text-blue-500">LOMBOK -
-                                    BENGKULU</span></div>
+                        <?php
+                        if ($result2->num_rows > 0) {
+                            $latestTsunami = $result2->fetch_assoc();
+                            echo '<div class="text-gray-600 text-xs">' . strtoupper($latestTsunami["Sebab_tsunami"]) .' - ' . strtoupper($latestTsunami['Waktu_kejadian']) . '</div>';
+                            echo '<div class="text-gray-600 text-xs">';
+                            if ($latestTsunami['Elevasi_gelombang_tsunami_m'] != NULL) {
+                                echo 'ELEVASI : ' .$latestTsunami['Elevasi_gelombang_tsunami_m'] . ", ";
+                            }
+                            echo '<span class="text-blue-500">' . strtoupper($latestTsunami['Lokasi_Provinsi']) . ' - ' . strtoupper($latestTsunami['Lokasi_KabKota']) .'</span></div>';
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>
