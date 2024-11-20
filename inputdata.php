@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         echo "
             <script>
-            alert('data oramg hilang berhasil ditambahkan!');
+            alert('data berhasil ditambahkan!');
             document.location.href='data.php';
             </script>
         ";
@@ -37,7 +37,8 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsunami Warning Dashboard</title>
+    <title>Input Data Orang Hilang</title>
+    <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="font/stylesheet.css">
     <style>
@@ -244,17 +245,24 @@ $conn->close();
             <form action="inputdata.php" method="post" enctype="multipart/form-data">
                 <div class="mb-6">
                     <label for="nama_orang" class="block text-gray-700 font-semibold mb-2">Nama Orang:</label>
-                    <input type="text" id="nama_orang" name="nama_orang" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="text" id="nama_orang" name="nama_orang"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
                 </div>
                 <div class="mb-6">
                     <label for="nama_bencana" class="block text-gray-700 font-semibold mb-2">Nama Bencana:</label>
-                    <input type="text" id="nama_bencana" name="nama_bencana" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="text" id="nama_bencana" name="nama_bencana"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
                 </div>
                 <div class="mb-6">
                     <label for="foto" class="block text-gray-700 font-semibold mb-2">Foto:</label>
-                    <input type="file" id="foto" name="foto" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="file" id="foto" name="foto"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
                 </div>
-                <button type="submit" name="submit" class="w-full p-3 rounded-lg text-white font-semibold" style="background-color: #007BFF;">Submit</button>
+                <button type="submit" name="submit" class="w-full p-3 rounded-lg text-white font-semibold"
+                    style="background-color: #007BFF;">Submit</button>
             </form>
         </div>
     </div>

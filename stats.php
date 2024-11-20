@@ -9,8 +9,16 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-//untuk ambil data di db
-$sql = "SELECT * FROM data_tsunami ORDER BY YEAR(STR_TO_DATE(Waktu_kejadian, '%W, %M %d, %Y')) DESC";
+//untuk tabel
+$sql1 = "SELECT * FROM data_tsunami ORDER BY id DESC";
+$result1 = $conn->query($sql1);
+
+//untuk header
+$sql2 = "SELECT * FROM data_tsunami ORDER BY id DESC";
+$result2 = $conn->query($sql2);
+
+//untuk maps
+$sql = "SELECT * FROM data_tsunami";
 $result = $conn->query($sql);
 
 ?>
@@ -24,24 +32,27 @@ $result = $conn->query($sql);
     <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="font/stylesheet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         body {
             font-family: 'Trip Sans';
-        }
-
-        #container {
-            height: 500px;
-            min-width: 310px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            margin-bottom: 2em;
         }
 
         .loading {
             margin-top: 10em;
             text-align: center;
             color: gray;
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+            min-width: 310px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            margin-bottom: 2em;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
@@ -61,11 +72,18 @@ $result = $conn->query($sql);
                 <div class="text-black bg-black bg-opacity-5 font-bold py-1 px-3 rounded-xl">
                     <div class="text-red-500 text-sm">PERINGATAN TSUNAMI!</div>
                     <div class="flex items-center space-x-1">
-                        <div class="font-bold text-normal mr-1">M 7.6</div>
                         <div>
-                            <div class="text-gray-600 text-xs">02-03-2021, 07:30:30 WIB</div>
-                            <div class="text-gray-600 text-xs">12 km <span class="text-blue-500">LOMBOK -
-                                    BENGKULU</span></div>
+                        <?php
+                        if ($result2->num_rows > 0) {
+                            $latestTsunami = $result2->fetch_assoc();
+                            echo '<div class="text-gray-600 text-xs">' . strtoupper($latestTsunami["Sebab_tsunami"]) .' - ' . strtoupper($latestTsunami['Waktu_kejadian']) . '</div>';
+                            echo '<div class="text-gray-600 text-xs">';
+                            if ($latestTsunami['Elevasi_gelombang_tsunami_m'] != NULL) {
+                                echo 'ELEVASI : ' .$latestTsunami['Elevasi_gelombang_tsunami_m'] . ", ";
+                            }
+                            echo '<span class="text-blue-500">' . strtoupper($latestTsunami['Lokasi_Provinsi']) . ' - ' . strtoupper($latestTsunami['Lokasi_KabKota']) .'</span></div>';
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>
@@ -220,125 +238,64 @@ $result = $conn->query($sql);
     </aside>
     <!-- Isian -->
     <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
-        <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-        <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
         <div class="flex-grow p-6">
-            <div id="container"></div>
-            <script>(async () => {
+            <div id="map"></div>
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+            <script>
+                // Initialize map
+                var map = L.map('map').setView([-2.5489, 118.0149], 5);  // Proyeksi indonesia
 
-                    const topology = await fetch(
-                        'https://code.highcharts.com/mapdata/countries/id/id-all.topo.json'
-                    ).then(response => response.json());
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
 
-                    // Prepare demo data. The data is joined to map using value of 'hc-key'
-                    // property by default. See API docs for 'joinBy' for more info on linking
-                    // data and map.
-                    const data = [
-                        ['id-3700', 10, 'Riau'],
-                        ['id-ac', 11, 'Aceh'],
-                        ['id-jt', 12, 'Jawa Tengah'],
-                        ['id-be', 13, 'Bengkulu'],
-                        ['id-bt', 14, 'Banten'],
-                        ['id-kb', 15, 'Kalimantan Barat'],
-                        ['id-bb', 16, 'Bangka Belitung'],
-                        ['id-ba', 17, 'Bali'],
-                        ['id-ji', 18, 'Jawa Timur'],
-                        ['id-ks', 19, 'Kalimantan Selatan'],
-                        ['id-nt', 20, 'NTT'],
-                        ['id-se', 21, 'Sulawesi Selatan'],
-                        ['id-kr', 22, 'Kepulauan Riau'],
-                        ['id-ib', 23, 'Irian jaya'],
-                        ['id-su', 24, 'Sumatra Utara'],
-                        ['id-ri', 25, 'Riau'],
-                        ['id-sw', 26, 'Sulawesi Utara'],
-                        ['id-ku', 27, 'Kepulauan Bangka Belitung'],
-                        ['id-la', 28, 'Maluku utara'],
-                        ['id-sb', 29, 'Sumatra Barat'],
-                        ['id-ma', 30, 'Maluku'],
-                        ['id-nb', 31, 'NTB'],
-                        ['id-sg', 32, 'Sulawesi Tenggara'],
-                        ['id-st', 33, 'Sulawesi Tengah'],
-                        ['id-pa', 34, 'Papua'],
-                        ['id-jr', 35, 'Jawa Barat'],
-                        ['id-ki', 36, 'Kalimantan timur'],
-                        ['id-1024', 37, 'Lampung'],
-                        ['id-jk', 38, 'DKI Jakarta'],
-                        ['id-go', 39, 'Gorontalo'],
-                        ['id-yo', 40, 'DI Yogyakarta'],
-                        ['id-sl', 41, 'Sumatra Selatan'],
-                        ['id-sr', 42, 'Sulawesi Barat'],
-                        ['id-ja', 43, 'Jambi'],
-                        ['id-kt', 44, 'Kalimantan Tengah']
-                    ];
-
-                    // Create the chart
-                    Highcharts.mapChart('container', {
-                        chart: {
-                            map: topology
-                        },
-
-                        title: {
-                            text: ''
-                        },
-
-                        mapNavigation: {
-                            enabled: true,
-                            buttonOptions: {
-                                verticalAlign: 'bottom'
-                            }
-                        },
-
-                        plotOptions: {
-                            series: {
-                                color: '#88a4bc'
-                            },
-                            mapbubble: {
-                                color: '#dc2626'
-                            }
-                        },
-
-                        series: [{
-                            data: data,
-                            name: 'Korban terdampak',
-                            states: {
-                                hover: {
-                                    color: '#3b729f'
-                                }
-                            },
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.name}'
-                            }
-                        }, {
-                            // Bubble series
-                            type: 'mapbubble',
-                            name: 'Tsunami terbaru',
-                            joinBy: ['hc-key', 'code'],
-                            data: [
-                                { code: 'id-ac', z: 200 },
-                                { code: 'id-jt', z: 300 },
-                                { code: 'id-be', z: 400 },
-                                { code: 'id-bt', z: 500 },
-                                { code: 'id-kb', z: 600 },
-                                { code: 'id-bb', z: 700 },
-                                { code: 'id-ba', z: 800 },
-                                { code: 'id-ji', z: 900 },
-                                { code: 'id-ks', z: 1000 }
-                            ],
-                            minSize: 4,
-                            maxSize: '12%',
-                            tooltip: {
-                                pointFormat: '{point.code}: {point.z} korban'
-                            },
-                        }]
-                    });
-
-                })();
+                // Disaster data with coordinates for each region
+                var disasterLocations = [
+                    <?php if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) { ?>
+                    { name: "<?php echo $row["Lokasi_Provinsi"] ?>", coords: [<?php echo $row["Latitude"] ?>, <?php echo $row["Longitude"] ?>], kota : "<?php echo $row["Lokasi_KabKota"] ?>", validitas : "<?php echo $row["Validitas"] ?>", gelombang : "<?php echo $row["Elevasi_gelombang_tsunami_m"] ?>", sebab : "<?php echo $row["Sebab_tsunami"] ?>", waktu : "<?php echo $row["Waktu_kejadian"] ?>", ref : "<?php echo $row["Referensi"] ?>", catatan : "<?php echo $row["Catatan"] ?>" },
+                    <?php }
+                        } ?>
+                ];
+                // bubble
+                disasterLocations.forEach(location => {
+                    // Define a small circle marker
+                    var color, fillColor;
+                        if (location.validitas == "Poor") {
+                            color = 'red';
+                            fillColor = 'red';
+                            fillOpacity = 0.8;
+                        } else if (location.validitas == "Moderate") {
+                            color = 'yellow';
+                            fillColor = 'yellow';
+                            fillOpacity = 0.8;
+                        } else if (location.validitas == "Excellent") {
+                            color = 'green';
+                            fillColor = 'green';
+                            fillOpacity = 0.8;
+                        }
+                    L.circleMarker(location.coords, {
+                        color: color,
+                        fillColor: fillColor,
+                        radius: 6,  // Fixed small radius for all markers
+                        weight: 0.5  // Thinner border
+                    }).addTo(map).bindPopup(`<b>${location.name}</b>
+                    <br>Waktu kejadian: ${location.waktu}
+                    <br>Kabupaten/Kota: ${location.kota}
+                    <br>Elevasi gelombang: ${location.gelombang}
+                    <br>Penyebab: ${location.sebab}
+                    <br>Validitas: ${location.validitas}
+                    <br>Referensi: ${location.ref}
+                    <br>Catatan: ${location.catatan}
+                    `);
+                });
             </script>
+
             <!-- Data Tables and Graphs -->
             <div class="grid grid-cols-2 gap-6">
                 <!-- Latest Tsunami Data -->
-                <div class="bg-white rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4 border ">
                     <h2 class="font-semibold text-lg mb-4">Tsunami Terbaru</h2>
                     <div class="flex flex-col">
                         <div class="-m-1.5 overflow-x-auto">
@@ -363,23 +320,24 @@ $result = $conn->query($sql);
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200">
-                                            <?php if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) { ?>
-                                            <tr>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                    <?php echo $row['Waktu_kejadian'] ?></td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                    <?php echo $row['Lokasi_KabKota'] ?></td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                    <?php echo $row['Elevasi_gelombang_tsunami_m'] ?></td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                                <?php echo $row['Sebab_tsunami'] ?>
-                                                </td>
-                                            </tr>
-                                            <?php }
+                                            <?php if ($result1->num_rows > 0) {
+                                                while ($rowt = $result1->fetch_assoc()) { ?>
+                                                    <tr>
+                                                        <td
+                                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                            <?php echo $rowt['Waktu_kejadian'] ?>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                            <?php echo $rowt['Lokasi_KabKota'] ?>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                            <?php echo $rowt['Elevasi_gelombang_tsunami_m'] ?>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                                            <?php echo $rowt['Sebab_tsunami'] ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php }
                                             } ?>
                                         </tbody>
                                     </table>
@@ -390,7 +348,7 @@ $result = $conn->query($sql);
                 </div>
 
                 <!-- Tsunami Graph -->
-                <div class="bg-white rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4 border ">
                     <h2 class="font-semibold text-lg mb-4">Jumlah kejadian tsunami di Indonesia</h2>
                     <div class="relative">
                         <!-- <div class=" w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"> -->
@@ -399,96 +357,16 @@ $result = $conn->query($sql);
                                 <h5 class="leading-none text-3xl font-bold text-red-700  pb-2">
                                     <?php
                                     // Example data for the sum series
-                                    $tsunami_data = [
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        4,
-                                        1,
-                                        5,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        3,
-                                        3,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        2,
-                                        2,
-                                        1,
-                                        1,
-                                        2,
-                                        1,
-                                        1,
-                                        1,
-                                        5,
-                                        1,
-                                        2,
-                                        1,
-                                        3,
-                                        2,
-                                        2,
-                                        1,
-                                        2,
-                                        6,
-                                        2,
-                                        2,
-                                        1,
-                                        1,
-                                        5,
-                                        1,
-                                        2,
-                                        2
-                                    ];
+                                    $tsunami_data = [];
+                                    $sql3 = "SELECT YEAR(STR_TO_DATE(Waktu_kejadian, '%Y')) as year, COUNT(*) as count FROM data_tsunami GROUP BY year ORDER BY year";
+                                    $result3 = $conn->query($sql3);
 
-                                    // Calculate the sum of the series
+                                    if ($result3->num_rows > 0) {
+                                        while ($row = $result3->fetch_assoc()) {
+                                            $tsunami_data[] = $row['count'];
+                                        }
+                                    }
                                     $sum_series = array_sum($tsunami_data);
-
-                                    // Output the sum
                                     echo $sum_series;
                                     ?>
                                 </h5>
@@ -559,176 +437,38 @@ $result = $conn->query($sql);
                     series: [
                         {
                             name: "Kejadian Tsunami",
-                            data: [1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 4
-                                , 1
-                                , 5
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 3
-                                , 3
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 2
-                                , 2
-                                , 1
-                                , 1
-                                , 2
-                                , 1
-                                , 1
-                                , 1
-                                , 5
-                                , 1
-                                , 2
-                                , 1
-                                , 3
-                                , 2
-                                , 2
-                                , 1
-                                , 2
-                                , 6
-                                , 2
-                                , 2
-                                , 1
-                                , 1
-                                , 5
-                                , 1
-                                , 2
-                                , 2], //diisi jumlah tsunami
+                            data: [
+                                <?php
+                                $tsunami_counts = [];
+                                $sql4 = "SELECT LEFT(Waktu_kejadian, 4) as year, COUNT(*) as count FROM data_tsunami GROUP BY year ORDER BY year";
+                                $result4 = $conn->query($sql4);
+
+                                if ($result4->num_rows > 0) {
+                                    while ($row = $result4->fetch_assoc()) {
+                                        $tsunami_counts[] = $row['count'];
+                                    }
+                                }
+                                echo implode(',', $tsunami_counts);
+                                ?>
+                            ], //diisi jumlah tsunami
                             color: "#1A56DB",
                         },
                     ],
                     xaxis: {
-                        categories: ["1608",
-                            "1629",
-                            "1673",
-                            "1674",
-                            "1708",
-                            "1710",
-                            "1711",
-                            "1754",
-                            "1763",
-                            "1770",
-                            "1775",
-                            "1797",
-                            "1815",
-                            "1818",
-                            "1820",
-                            "1833",
-                            "1841",
-                            "1843",
-                            "1845",
-                            "1846",
-                            "1851",
-                            "1852",
-                            "1854",
-                            "1855",
-                            "1856",
-                            "1857",
-                            "1859",
-                            "1860",
-                            "1861",
-                            "1864",
-                            "1871",
-                            "1876",
-                            "1882",
-                            "1883",
-                            "1885",
-                            "1889",
-                            "1891",
-                            "1892",
-                            "1899",
-                            "1900",
-                            "1907",
-                            "1908",
-                            "1914",
-                            "1917",
-                            "1921",
-                            "1927",
-                            "1928",
-                            "1930",
-                            "1931",
-                            "1936",
-                            "1938",
-                            "1939",
-                            "1948",
-                            "1950",
-                            "1957",
-                            "1964",
-                            "1965",
-                            "1967",
-                            "1968",
-                            "1969",
-                            "1977",
-                            "1979",
-                            "1981",
-                            "1983",
-                            "1992",
-                            "1994",
-                            "1995",
-                            "1996",
-                            "2000",
-                            "2004",
-                            "2005",
-                            "2006",
-                            "2007",
-                            "2008",
-                            "2009",
-                            "2010",
-                            "2012",
-                            "2014",
-                            "2016",
-                            "2018",
-                            "2019",
-                            "2021",
-                            "2023"], // diisi range waktu tsunami
+                        categories: [
+                            <?php
+                            $years = [];
+                            $sql5 = "SELECT DISTINCT LEFT(Waktu_kejadian, 4) as year FROM data_tsunami ORDER BY year";
+                            $result5 = $conn->query($sql5);
+
+                            if ($result5->num_rows > 0) {
+                                while ($row = $result5->fetch_assoc()) {
+                                    $years[] = $row['year'];
+                                }
+                            }
+                            echo '"' . implode('","', $years) . '"';
+                            ?>
+                        ], // diisi range waktu tsunami
                         labels: {
                             show: false,
                         },
