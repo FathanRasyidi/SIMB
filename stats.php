@@ -31,7 +31,9 @@ $result = $conn->query($sql);
     <link rel="icon" href="asset/tsunami.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="font/stylesheet.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
     <style>
         body {
             font-family: 'Trip Sans';
@@ -239,7 +241,9 @@ $result = $conn->query($sql);
     <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
         <div class="flex-grow p-6">
             <div id="map"></div>
-            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
             <script>
                 // Initialize map
                 var map = L.map('map').setView([-2.5489, 118.0149], 5);  // Proyeksi indonesia
