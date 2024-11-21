@@ -124,10 +124,11 @@ $result = $conn->query($sql);
 <body class="body" onload="startTime()">
     <div class="fixed w-full z-30 flex bg-white p-2 items-center justify-between h-20 px-10 pr-4 shadow-lg">
         <div class="logo ml-12 transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
+        <a href="admin.php">
             <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500"
                 style="font-size: 30px">
                 peka - tsunami
-            </span>
+            </span></a>
         </div>
         <!-- Kanan -->
         <div class="grow h-full flex items-center justify-end">
